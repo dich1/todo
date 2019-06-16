@@ -12,8 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('single');
 });
+
+Route::get('/mypage', function () {
+    return view('auth/mypage');
+});
+
+Route::get('/create', function () {
+    return view('create');
+});
+
+Route::get('/edit', function () {
+    return view('edit');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+
 
 Auth::routes();
 

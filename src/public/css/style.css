@@ -1,0 +1,998 @@
+@charset "UTF-8";
+html {
+  color: #000;
+  background: #FFF;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+caption, th {
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+abbr, acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  *font-size: 100%;
+}
+
+legend {
+  color: #000;
+}
+
+#yui3-css-stamp.cssreset {
+  display: none;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Helvetica Neue",Helvetica,Arial, YuGothic, 'Yu Gothic', 游ゴシック体, '游ゴシック', "ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ", Meiryo,"MS ゴシック","MS Gothic",sans-serif;
+  box-sizing: border-box;
+  color: #333;
+}
+
+html {
+  height: calc(100% - 30px);
+}
+
+body {
+  line-height: 1.6;
+  font-size: 14px;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.wrap {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.wrap600 {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pc {
+  display: none;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.ptb40-80 {
+  padding: 40px 0;
+}
+
+.create-commit, .single-edit-btn {
+  position: fixed;
+  right: -10px;
+  bottom: -10px;
+  width: 65px;
+  height: 65px;
+  display: inline-block;
+  background: #f94242;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: .4s;
+  box-shadow: 0 0 15px #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-commit > span, .single-edit-btn > span {
+  text-align: center;
+}
+.create-commit > span > span, .single-edit-btn > span > span {
+  line-height: 1.4;
+  font-size: 10px;
+  display: block;
+  font-weight: bold;
+  color: #fff;
+}
+
+.breadcrumb {
+  margin-top: 10px;
+}
+.breadcrumb ul {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb li {
+  font-size: 12px;
+  display: inline-block;
+}
+.breadcrumb li:after {
+  content: '<';
+  display: inline-block;
+  padding: 0 5px;
+}
+.breadcrumb li:last-child:after {
+  display: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .sp {
+    display: none;
+  }
+
+  .pc {
+    display: block;
+  }
+
+  .ptb40-80 {
+    padding: 80px 0;
+  }
+
+  .create-commit, .single-edit-btn {
+    right: 20px;
+    bottom: 20px;
+    width: 100px;
+    height: 100px;
+  }
+  .create-commit > span > span, .single-edit-btn > span > span {
+    font-size: 14px;
+  }
+}
+#header {
+  background-color: #eee;
+}
+#header > div {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#header h1 {
+  font-weight: bold;
+  font-size: 18px;
+}
+#header .header-link-login,
+#header .header-link-logout {
+  font-size: 12px;
+  display: inline-block;
+  font-weight: bold;
+}
+#header .header-link-registration {
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #333;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
+#single h1 {
+  position: relative;
+  padding: 10px 5px;
+  border-radius: 5px;
+  background: #eee;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+#single h1:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 30px;
+  border: 15px solid transparent;
+  border-top: 15px solid #eee;
+  width: 0;
+  height: 0;
+}
+#single .time-limit {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: right;
+}
+#single .time-limit span:nth-child(2) {
+  font-size: 20px;
+  color: #f64242;
+}
+#single .time-limit span:nth-child(4) {
+  font-size: 20px;
+  color: #f64242;
+}
+#single ol {
+  counter-reset: number;
+  list-style-type: none !important;
+}
+#single li {
+  border-bottom: dashed 1px #333;
+  position: relative;
+  padding: 10px 0 10px 40px;
+  line-height: 2;
+  font-weight: bold;
+}
+#single li:before {
+  position: absolute;
+  counter-increment: number;
+  content: counter(number);
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 50%;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#single li:last-of-type {
+  border-bottom: none;
+}
+#single .complete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#single .complete .txt {
+  text-decoration: line-through;
+  opacity: .3;
+  width: calc(100% - 80px);
+}
+#single .complete .complete-txt span {
+  display: inline-block;
+  font-weight: bold;
+  padding: 2px 0;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 3px;
+  width: 45px;
+  background-color: #f94242;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  #single h1 {
+    font-size: 30px;
+  }
+  #single .time-limit {
+    margin-bottom: 80px;
+  }
+  #single .time-limit span:nth-child(2) {
+    font-size: 30px;
+  }
+  #single .time-limit span:nth-child(4) {
+    font-size: 30px;
+  }
+}
+.form input:not([type=checkbox]), .form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+}
+.form .link {
+  transition: .3s;
+}
+.form .link:hover {
+  opacity: .8;
+  transition: .3s;
+}
+
+.error {
+  font-size: 12px;
+  font-weight: bold;
+  color: #f94242;
+}
+
+.required {
+  color: #f94242;
+}
+
+.mainpage-form-main-footer {
+  background-color: #eee;
+}
+
+/* ------------------------- */
+/* ----- mainpage-form ----- */
+/* ------------------------- */
+.mainpage-form-main {
+  background-color: #eee;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainpage-form {
+  border: 1px solid #eee;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.mainpage-form h2 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+.mainpage-form .form-wrap {
+  padding: 40px 20px;
+}
+.mainpage-form .sns-login {
+  margin-bottom: 30px;
+}
+.mainpage-form .sns-login a {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  position: relative;
+  padding: 8px;
+  border-radius: 5px;
+}
+.mainpage-form .sns-login span {
+  display: block;
+  color: #fff;
+}
+.mainpage-form .sns-login span:first-child {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%) translateX(0);
+  -webkit-transform: translateY(-50%) translateX(0);
+}
+.mainpage-form .sns-login span:first-child i {
+  color: #fff;
+}
+.mainpage-form .sns-login span:last-child {
+  text-align: center;
+}
+.mainpage-form .sns-login .twitter-login {
+  margin-bottom: 5px;
+  background: #1da1f3;
+}
+.mainpage-form .sns-login .facebook-login {
+  background: #4966a0;
+}
+.mainpage-form .form-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 8px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.mainpage-form .form-btn-bg-red {
+  background-color: #f94242;
+}
+.mainpage-form .form-block {
+  margin-bottom: 10px;
+}
+.mainpage-form .form-block:last-child {
+  margin-bottom: 0;
+}
+.mainpage-form .form-bloc-item-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.mainpage-form .form-submit {
+  text-align: center;
+  margin-top: 10px;
+}
+.mainpage-form .form-submit input[type="submit"] {
+  -webkit-appearance: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #272727;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+.mainpage-form .form-return {
+  text-align: center;
+  margin-top: 5px;
+}
+.mainpage-form .form-return input[type="submit"], .mainpage-form .form-return a {
+  display: block;
+  margin: 0 auto;
+  -webkit-appearance: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f94242;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.mainpage-form .form-signup {
+  text-align: center;
+  margin-top: 5px;
+}
+.mainpage-form .form-signup a {
+  display: block;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #f94242;
+  color: #fff;
+  font-weight: bold;
+}
+.mainpage-form .form-consent {
+  margin: 10px 0 20px;
+  text-align: center;
+  font-size: 12px;
+}
+.mainpage-form .form-consent a {
+  color: #297af4;
+  font-size: 12px;
+}
+.mainpage-form .pass-forget {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 12px;
+}
+.mainpage-form .pass-forget a {
+  color: #297af4;
+}
+
+@media screen and (min-width: 768px) {
+  .mainpage-form .form-wrap {
+    padding: 50px 100px;
+  }
+}
+/* ----------------- */
+/* ----- login ----- */
+/* ----------------- */
+#login .mail-login-txt {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#password_reset .password_reset-txt {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#password_reset_complete .password_reset_complete-txt {
+  font-weight: bold;
+  text-align: center;
+}
+
+#signup_complete .signup_complete-txt {
+  font-weight: bold;
+  text-align: center;
+}
+
+#signup_confirmation .form-block .form-bloc-item-confirmation-txt {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+#signup_confirmation .form-block:last-child .form-bloc-item-confirmation-txt {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+#mypage .user-info-wrap {
+  max-width: 400px;
+  margin: 0 auto;
+}
+#mypage .user-info-wrap .form-item {
+  margin-bottom: 10px;
+}
+#mypage .user-info-wrap .form-item:last-child {
+  margin-bottom: 0;
+}
+#mypage .user-info-wrap .form-item span {
+  font-weight: bold;
+}
+#mypage .user-info-wrap .form-item input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  outline: none;
+  background: transparent;
+  padding: 8px;
+  width: 100%;
+}
+#mypage .user-info-wrap input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  background-color: #333;
+  color: #fff;
+  border-radius: 30px;
+  width: 220px;
+  margin: 20px auto 0;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 5px;
+  border: 1px solid #333;
+  transition: .3s;
+}
+#mypage .user-info-wrap input[type="submit"]:hover {
+  color: #333;
+  background-color: #fff;
+  transition: .3s;
+}
+#mypage .commit-list-wrap {
+  margin-top: 60px;
+}
+#mypage .commit-list-wrap .commit-list {
+  margin-bottom: 30px;
+}
+#mypage .commit-list-wrap .commit-list:last-child {
+  margin-bottom: 0;
+}
+#mypage .commit-list-wrap .commit-list h2 {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+#mypage .commit-list-wrap .commit-list ul > li {
+  margin-top: 10px;
+}
+#mypage .commit-list-wrap .commit-list ul > li:first-child {
+  margin-top: 0;
+}
+#mypage .commit-list-wrap .commit-list ul > li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+  transition: .3s;
+  position: relative;
+}
+#mypage .commit-list-wrap .commit-list ul > li a > div {
+  width: calc(100% - 40px);
+}
+#mypage .commit-list-wrap .commit-list ul > li a .arrow {
+  position: relative;
+  display: inline-block;
+  padding-left: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+}
+#mypage .commit-list-wrap .commit-list ul > li a .arrow:before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border: 0px;
+  border-top: solid 2px #fff;
+  border-right: solid 2px #fff;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  left: 9px;
+  margin-top: -4px;
+}
+#mypage .commit-list-wrap .commit-list ul > li a:hover {
+  background-color: #eee;
+  transition: .3s;
+}
+#mypage .commit-list-wrap .commit-list ul > li h3 {
+  font-weight: bold;
+}
+#mypage .commit-list-wrap .commit-list ul > li ol {
+  margin-left: 15px;
+}
+#mypage .commit-list-wrap .commit-list ul > li ol > li {
+  list-style: decimal;
+  color: #afafaf;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  #mypage .commit-list-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+  #mypage .commit-list-wrap .commit-list {
+    width: 48%;
+    margin-bottom: 0;
+  }
+}
+#commit-create .commit-item-wrap {
+  margin-bottom: 30px;
+  /* select style */
+  /* select style end */
+}
+#commit-create .commit-item-wrap .commit-item {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+#commit-create .commit-item-wrap textarea {
+  width: 100%;
+  height: 300px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  font-weight: bold;
+  line-height: 2;
+}
+#commit-create .commit-item-wrap .form-select {
+  display: flex;
+}
+#commit-create .commit-item-wrap .select-wrap {
+  position: relative;
+}
+#commit-create .commit-item-wrap .year {
+  width: 100px;
+}
+#commit-create .commit-item-wrap .month, #commit-create .commit-item-wrap .day {
+  width: 70px;
+}
+#commit-create .commit-item-wrap .month {
+  margin: 0 10px;
+}
+#commit-create .commit-item-wrap .select-wrap:before {
+  z-index: 1;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  -webkit-transform: translateY(-50%) translateX(0);
+  pointer-events: none;
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: url(../img/select.png) no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+#commit-create .commit-item-wrap .select-wrap select {
+  width: 100%;
+  outline: none;
+  -moz-appearance: none;
+  text-overflow: '';
+  background: none transparent;
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  color: #000;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+}
+#commit-create .commit-item-wrap .select-wrap select option {
+  background-color: #e6e6e6;
+  color: #000;
+}
+#commit-create .commit-item-wrap .select-wrap select::-ms-expand {
+  display: none;
+}
+#commit-create .commit-item-wrap .select-wrap select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #828c9a;
+}
+#commit-create .commit-item-wrap .attention {
+  color: #f94242;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+#commit-create input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  background-color: #333;
+  color: #fff;
+  border-radius: 30px;
+  width: 220px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 5px;
+  border: 1px solid #333;
+  transition: .3s;
+}
+#commit-create input[type="submit"]:hover {
+  color: #333;
+  background-color: #fff;
+  transition: .3s;
+}
+
+@media screen and (min-width: 768px) {
+  #commit-create .commit-item-wrap textarea {
+    height: 400px;
+  }
+}
+#edit .commit-item-wrap {
+  margin-bottom: 30px;
+  /* select style */
+  /* select style end */
+}
+#edit .commit-item-wrap .commit-item {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+#edit .commit-item-wrap .commit-item-add {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+#edit .commit-item-wrap .commit-item-add .add {
+  display: inline-block;
+  font-size: 10px;
+  background-color: #333;
+  border-radius: 3px;
+  color: #fff;
+  width: 70px;
+  text-align: center;
+  padding: 2px 0;
+  cursor: pointer;
+}
+#edit .commit-item-wrap .commit-item-bloc {
+  margin-bottom: 20px;
+}
+#edit .commit-item-wrap .commit-item-bloc:last-child {
+  margin-bottom: 0;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num {
+  display: flex;
+  justify-content: space-between;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num .num {
+  font-weight: bold;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div {
+  display: flex;
+  align-items: center;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div span {
+  display: inline-block;
+  font-weight: bold;
+  padding: 2px 0;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div .completion {
+  width: 70px;
+  background-color: #f94242;
+  color: #fff;
+  margin-right: 10px;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div .incomplete {
+  width: 70px;
+  background-color: #eee;
+  margin-right: 10px;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div .move-up, #edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div .move-down {
+  width: 40px;
+  background-color: #eee;
+  margin-right: 10px;
+}
+#edit .commit-item-wrap .commit-item-bloc .commit-item-bloc-num > div .delete {
+  width: 40px;
+  background-color: #eee;
+}
+#edit .commit-item-wrap .form-select {
+  display: flex;
+}
+#edit .commit-item-wrap .select-wrap {
+  position: relative;
+}
+#edit .commit-item-wrap .year {
+  width: 100px;
+}
+#edit .commit-item-wrap .month, #edit .commit-item-wrap .day {
+  width: 70px;
+}
+#edit .commit-item-wrap .month {
+  margin: 0 10px;
+}
+#edit .commit-item-wrap .select-wrap:before {
+  z-index: 1;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  -webkit-transform: translateY(-50%) translateX(0);
+  pointer-events: none;
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: url(../img/select.png) no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+#edit .commit-item-wrap .select-wrap select {
+  width: 100%;
+  outline: none;
+  -moz-appearance: none;
+  text-overflow: '';
+  background: none transparent;
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  color: #000;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+}
+#edit .commit-item-wrap .select-wrap select option {
+  background-color: #e6e6e6;
+  color: #000;
+}
+#edit .commit-item-wrap .select-wrap select::-ms-expand {
+  display: none;
+}
+#edit .commit-item-wrap .select-wrap select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #828c9a;
+}
+#edit .commit-item-wrap input[type="text"] {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  outline: none;
+  background: transparent;
+  padding: 10px 0;
+  font-weight: bold;
+  line-height: 2;
+}
+#edit .commit-item-wrap .completion-txt {
+  width: 100%;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px 0;
+  font-weight: bold;
+  line-height: 2;
+}
+#edit .commit-item-wrap .completion-txt span {
+  text-decoration: line-through;
+  opacity: .3;
+}
+#edit input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  background-color: #333;
+  color: #fff;
+  border-radius: 30px;
+  width: 220px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 5px;
+  border: 1px solid #333;
+  transition: .3s;
+}
+#edit input[type="submit"]:hover {
+  color: #333;
+  background-color: #fff;
+  transition: .3s;
+}
+
+@media screen and (min-width: 768px) {
+  #edit .commit-item-wrap textarea {
+    height: 400px;
+  }
+}
+#footer {
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  padding: 0 0 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
