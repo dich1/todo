@@ -13,8 +13,8 @@
       <h1>Commit</h1>
       <div class="header-link">
         <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
-        <a href="#" class="header-link-login">ログイン</a>
-        <a href="#" class="header-link-registration">新規登録</a>
+        <a href="/login" class="header-link-login">ログイン</a>
+        <a href="/register" class="header-link-registration">新規登録</a>
       </div>
     </div>
   </header>
@@ -137,7 +137,7 @@
 
 
 
-  <a href="#" class="single-edit-btn">
+  <a href="/edit" class="single-edit-btn">
     <span>
       <span>編集する</span>
     </span>
