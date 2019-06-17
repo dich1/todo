@@ -31,7 +31,17 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/password-reset-complete', function () {
+    return view('password-reset-complete');
+});
 
+Route::get('/signup-complete', function () {
+    return view('signup-complete');
+});
+
+Route::get('/signup-confirmation', function () {
+    return view('signup-confirmation');
+});
 
 Auth::routes();
 
