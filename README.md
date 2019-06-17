@@ -46,3 +46,6 @@ heroku open
 ## Detail
 - see
   - https://qiita.com/dich1/items/552b1de430d806fe49ac
+
+## Mockup
+http://gksgym.xyz/commit/sitemap.html
