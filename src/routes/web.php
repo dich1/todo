@@ -46,3 +46,4 @@ Route::get('/signup-confirmation', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('commits', 'CommitController');
