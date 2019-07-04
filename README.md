@@ -6,7 +6,7 @@ cd todo
 git clone https://github.com/laradock/laradock.git
 cd laradock 
 cp env-example .env
-sed -ie 's/APP_CODE_PATH_HOST=..\//APP_CODE_PATH_HOST=..\/todo/g' .env
+sed -ie 's/APP_CODE_PATH_HOST=..\//APP_CODE_PATH_HOST=..\/src/g' .env
 sed -ie 's/MYSQL_VERSION=latest/MYSQL_VERSION=5.7/g' .env
 rm .enve
 docker-compose up -d workspace nginx mysql
