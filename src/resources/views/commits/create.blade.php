@@ -38,6 +38,14 @@
                         <span class="help-block">{{ $errors->first("limit") }}</span>
                        @endif
                     </div>
+                    <div class="form-group @if($errors->has('content')) has-error @endif">
+                       <label for="content-field">Content</label>
+                    <input type="text" id="content-field" name="content" class="form-control" value="{{ old("content") }}"/>
+                       @if($errors->has("content"))
+                        <span class="help-block">{{ $errors->first("content") }}</span>
+                       @endif
+                    </div>
+
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Create</button>
                     <a class="btn btn-link pull-right" href="{{ route('commits.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>

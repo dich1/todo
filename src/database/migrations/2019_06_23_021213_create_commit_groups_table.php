@@ -16,10 +16,15 @@ class CreateCommitGroupsTable extends Migration
         Schema::create('commit_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('commit_id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->string('content');
+            $table->boolean('status')->default(false);
             $table->integer('priority')->unsigned();
             $table->timestamps();
+
+            $table->foreign('commit_id')
+                ->references('id')
+                ->on('commits')
+                ->onDelete('cascade');
         });
     }
 

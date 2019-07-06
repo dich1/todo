@@ -19,9 +19,10 @@
                         <tr>
                             <th>ID</th>
                             <th>USER_ID</th>
-                        <th>GROUP_ID</th>
-                        <th>LIMIT</th>
-                        <th>STATUS</th>
+                            <th>GROUP_ID</th>
+                            <th>LIMIT</th>
+                            <th>STATUS</th>
+                            <th>CONTENT</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -31,9 +32,12 @@
                             <tr>
                                 <td>{{$commit->id}}</td>
                                 <td>{{$commit->user_id}}</td>
-                    <td>{{$commit->group_id}}</td>
-                    <td>{{$commit->limit}}</td>
-                    <td>{{$commit->status}}</td>
+                                <td>{{$commit->group_id}}</td>
+                                <td>{{$commit->limit}}</td>
+                                <td>{{$commit->status}}</td>
+                            @foreach($commit->commitGroups as $commitGroup)
+                                <td>{{$commitGroup->content}}</td>
+                            @endforeach
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('commits.show', $commit->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     <a class="btn btn-xs btn-warning" href="{{ route('commits.edit', $commit->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
