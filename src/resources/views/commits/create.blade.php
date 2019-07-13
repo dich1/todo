@@ -41,6 +41,7 @@
                     <label for="content-field">Content</label>
                     <?php for ($i = 0; $i <= 20; $i++) { ?>
                         <?php if ($i < 1) { ?>
+                            <input type="hidden" name="status[]" value="0">
                             <input type="hidden" name="priority[]" value="<?php echo $i ?>">
                             <div class="form-group @if($errors->has('content')) has-error @endif">
                             <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}"/>
@@ -49,6 +50,7 @@
                                @endif
                             </div>
                         <?php } else { ?>
+                            <input type="hidden" name="status[]" value="0">
                             <input type="hidden" name="priority[]" value="<?php echo $i ?>">
                             <div class="form-group @if($errors->has('content')) has-error @endif">
                             <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}"  style="display: none; />
