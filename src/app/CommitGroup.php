@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CommitGroup extends Model
 {
     protected $fillable = [
-        'content'
+        'content', 'priority'
     ];
 
     public function commit()

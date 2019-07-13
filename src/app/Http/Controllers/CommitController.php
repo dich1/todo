@@ -40,14 +40,19 @@ class CommitController extends Controller {
     public function store(Request $request)
     {
         $commit = new Commit();
-        $commitGroup = new CommitGroup();
 
-        $commitGroup->priority = 1;
-        $commitGroup->content = $request->input("content");
-
+        $commitGroups = array();
+        $priorities = $request->input("priority");
+        $contents = $request->input("content");
+        foreach ($contents as $key => $content) {
+            if (!empty($content)) {
+                $commitGroup = new CommitGroup(['priority' => $key, 'content' => $content]);
+                $commitGroups[$key] = $commitGroup;
+            }
+        }
         $commit->fill($request->all())->save();
         $commit = Commit::find($commit->id);
-        $commit->commitGroups()->save($commitGroup);
+        $commit->commitGroups()->saveMany($commitGroups);
 
         return redirect()->route('commits.index')->with('message', 'Item created successfully.');
     }
