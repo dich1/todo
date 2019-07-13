@@ -39,13 +39,27 @@
                         <span class="help-block">{{ $errors->first("limit") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('status')) has-error @endif">
-                       <label for="status-field">Status</label>
-                    <div class="btn-group" data-toggle="buttons"><label class="btn btn-primary"><input type="radio" value="true" name="status-field" id="status-field" autocomplete="off"> True</label><label class="btn btn-primary active"><input type="radio" name="status-field" value="false" id="status-field" autocomplete="off"> False</label></div>
-                       @if($errors->has("status"))
-                        <span class="help-block">{{ $errors->first("status") }}</span>
-                       @endif
-                    </div>
+                    <label for="content-field">Content</label>
+                    @foreach($commit->commitGroups as $key => $commitGroup)
+                        <div class="form-group @if($errors->has('status')) has-error @endif">
+                        <input type="text" id="status-field-{{ $key }}" name="status[{{ $key }}]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
+                           @if($errors->has("status"))
+                            <span class="help-block">{{ $errors->first("status") }}</span>
+                           @endif
+                        </div>
+                        <div class="form-group @if($errors->has('priority')) has-error @endif">
+                        <input type="text" id="priority-field-{{ $key }}" name="priority[{{ $key }}]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
+                           @if($errors->has("priority"))
+                            <span class="help-block">{{ $errors->first("priority") }}</span>
+                           @endif
+                        </div>
+                        <div class="form-group @if($errors->has('content')) has-error @endif">
+                        <input type="text" id="content-field-{{ $key }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
+                           @if($errors->has("content"))
+                            <span class="help-block">{{ $errors->first("content") }}</span>
+                           @endif
+                        </div>
+                    @endforeach
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a class="btn btn-link pull-right" href="{{ route('commits.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
@@ -59,6 +73,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
   <script>
     $('.date-picker').datepicker({
+        format: 'yyyy/mm/dd'
     });
   </script>
 @endsection

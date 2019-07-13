@@ -93,13 +93,19 @@ class CommitController extends Controller {
     public function update(Request $request, $id)
     {
         $commit = Commit::findOrFail($id);
+        $commit->fill($request->all())->save();
 
-        $commit->user_id = $request->input("user_id");
-        $commit->group_id = $request->input("group_id");
-        $commit->limit = $request->input("limit");
-        $commit->status = $request->input("status", 0);
-
-        $commit->save();
+        $contents = $request->input("content");
+        $statusies = $request->input("status");
+        $priorities = $request->input("priority");
+        foreach ($contents as $key => $content) {
+            if (!empty($content)) {
+                $commit->commitGroups[$key]->priority = $priorities[$key];
+                $commit->commitGroups[$key]->status = $statusies[$key];
+                $commit->commitGroups[$key]->content = $content;
+            }
+        }
+        $commit->push();
 
         return redirect()->route('commits.index')->with('message', 'Item updated successfully.');
     }
