@@ -11,7 +11,7 @@
 
   <div class="breadcrumb wrap">
     <ul>
-      <li><a href="#">マイページ</a></li>
+      <li><a href="{{ route('home') }}">マイページ</a></li>
       <li>新規作成</li>
     </ul>
   </div>
@@ -31,10 +31,10 @@
           <div class="commit-item-wrap">
             <span class="commit-item">期限</span>
             <div class="form-group @if($errors->has('limit')) has-error @endif">
-            <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ old("limit") }}" autocomplete="off"/>
-               @if($errors->has("limit"))
+              <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ old("limit") }}" autocomplete="off"/>
+              @if($errors->has("limit"))
                 <span class="help-block">{{ $errors->first("limit") }}</span>
-               @endif
+              @endif
             </div>
           </div>
 
@@ -42,8 +42,8 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <?php for ($i = 0; $i <= 20; $i++) { ?>
-                <?php if ($i < 1) { ?>
+              <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php if ($i < 10) { ?>
                     <input type="hidden" name="status[]" value="0">
                     <input type="hidden" name="priority[]" value="<?php echo $i ?>">
                     <div class="form-group @if($errors->has('content')) has-error @endif">
@@ -81,7 +81,7 @@
         format: 'yyyy/mm/dd'
     });
 
-    var addFormCount = 1;
+    var addFormCount = 10;
     $('#addForm').click(function(){
       $('#content-field-' + addFormCount).show();
       addFormCount++;

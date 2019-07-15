@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+  <title>ログイン | Commit</title>
+@endsection
 @section('content')
   <main class="mainpage-form-main" id="login">
     <div class="wrap600 ptb40-80">
