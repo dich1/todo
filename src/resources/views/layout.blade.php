@@ -27,8 +27,16 @@
 </head>
 
 <body>
-
-    @yield('header')
+    <header id="header" class="">
+    <div class="wrap">
+      <h1>Commit</h1>
+      <div class="header-link">
+        <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
+        <a href="#" class="header-link-login">ログイン</a>
+        <a href="#" class="header-link-registration">新規登録</a>
+      </div>
+    </div>
+    </header>
     @yield('content')
     <footer id="footer" class="wrap">
         <small>© Copyright 2019 xxx All rights reserved.</small>

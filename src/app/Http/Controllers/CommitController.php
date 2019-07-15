@@ -18,7 +18,7 @@ class CommitController extends Controller {
     {
         $commits = Commit::orderBy('id', 'desc')->paginate(10);
 
-        return view('commits.index', compact('commits'));
+        return view('index', compact('commits'));
     }
 
     /**

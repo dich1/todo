@@ -5,18 +5,6 @@
 @section('css')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
 @endsection
-@section('header')
-  <header id="header" class="">
-    <div class="wrap">
-      <h1>Commit</h1>
-      <div class="header-link">
-        <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
-        <a href="#" class="header-link-login">ログイン</a>
-        <a href="#" class="header-link-registration">新規登録</a>
-      </div>
-    </div>
-  </header>
-@endsection
 
 @section('content')
     @include('error')

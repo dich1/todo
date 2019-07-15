@@ -1,24 +1,13 @@
-<!doctype html>
-<html lang="ja"><head>
-  <meta charset="utf8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+@extends('layout')
+@section('title')
   <title>2019.12.1までの20コミット | Commit</title>
-  <meta name="descpription" content="〇〇を使って、【2019年12月1日までにやりたい20個のこと】に挑戦中！">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css" media="all">
-</head>
-<body>
-  <header id="header" class="">
-    <div class="wrap">
-      <h1>Commit</h1>
-      <div class="header-link">
-        <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
-        <a href="/login" class="header-link-login">ログイン</a>
-        <a href="/register" class="header-link-registration">新規登録</a>
-      </div>
-    </div>
-  </header>
+@endsection
+@section('css')
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
+@endsection
 
+@section('content')
+    @include('error')
   <div id="single">
     <div class="wrap600 ptb40-80">
       <h1>2019.12.1までの20コミット</h1>
@@ -143,14 +132,4 @@
     </span>
   </a>
 
-
-
-  <footer id="footer" class="wrap">
-    <small>© Copyright 2019 xxx All rights reserved.</small>
-  </footer>
-
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
-
-
-</body></html>
+@endsection
