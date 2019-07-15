@@ -79,7 +79,7 @@ class CommitController extends Controller {
     {
         $commit = Commit::findOrFail($id);
 
-        return view('commits.edit', compact('commit'));
+        return view('edit', compact('commit'));
     }
 
     /**
