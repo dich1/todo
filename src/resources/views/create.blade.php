@@ -28,41 +28,25 @@
     </ul>
   </div>
 
-
-
   <main id="commit-create">
     <div class="wrap600 ptb40-80">
-      <form class="" action="index.html" method="post">
+      <form action="{{ route('commits.store') }}" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <div class="form-group @if($errors->has('user_id')) has-error @endif">
+        <input type="hidden" id="user_id-field" name="user_id" class="form-control" value="{{ old("user_id") }}"/>
+        <input type="hidden" id="group_id-field" name="group_id" class="form-control" value="{{ old("group_id") }}"/>
+           @if($errors->has("group_id"))
+            <span class="help-block">{{ $errors->first("group_id") }}</span>
+           @endif
+        </div>
         <div class="">
           <div class="commit-item-wrap">
             <span class="commit-item">期限</span>
-            <div class="form-select">
-              <div class="select-wrap year">
-                <select class="" name="">
-                  <option value="2019">2019年</option>
-                  <option value="2020">2020年</option>
-                  <option value="2021">2021年</option>
-                  <option value="2022">2022年</option>
-                </select>
-              </div>
-
-              <div class="select-wrap  month">
-                <select class="" name="">
-                  <option value="1">1月</option>
-                  <option value="2">2月</option>
-                  <option value="3">3月</option>
-                  <option value="4">4月</option>
-                </select>
-              </div>
-
-              <div class="select-wrap day">
-                <select class="" name="">
-                  <option value="1">1日</option>
-                  <option value="2">2日</option>
-                  <option value="3">3日</option>
-                  <option value="4">4日</option>
-                </select>
-              </div>
+            <div class="form-group @if($errors->has('limit')) has-error @endif">
+            <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ old("limit") }}" autocomplete="off"/>
+               @if($errors->has("limit"))
+                <span class="help-block">{{ $errors->first("limit") }}</span>
+               @endif
             </div>
           </div>
 
@@ -70,11 +54,32 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <textarea name="name" rows="8" cols="80"></textarea>
+              <?php for ($i = 0; $i <= 20; $i++) { ?>
+                <?php if ($i < 1) { ?>
+                    <input type="hidden" name="status[]" value="0">
+                    <input type="hidden" name="priority[]" value="<?php echo $i ?>">
+                    <div class="form-group @if($errors->has('content')) has-error @endif">
+                      <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}"/>
+                      @if($errors->has("content"))
+                         <span class="help-block">{{ $errors->first("content") }}</span>
+                      @endif
+                    </div>
+                <?php } else { ?>
+                    <input type="hidden" name="status[]" value="0">
+                    <input type="hidden" name="priority[]" value="<?php echo $i ?>">
+                    <div class="form-group @if($errors->has('content')) has-error @endif">
+                      <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}" style="display: none;" />
+                      @if($errors->has("content"))
+                        <span class="help-block">{{ $errors->first("content") }}</span>
+                      @endif
+                    </div>
+                <?php } ?>
+              <?php } ?>
             </div>
           </div>
         </div>
-
+        <div>
+        <input type='button' value='+' id="addForm" class="btn btn-danger">
         <input type="submit" name="" value="この内容で決定">
       </form>
     </div>
