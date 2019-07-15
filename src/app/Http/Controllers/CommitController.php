@@ -28,7 +28,7 @@ class CommitController extends Controller {
      */
     public function create()
     {
-        return view('commits.create');
+        return view('create');
     }
 
     /**

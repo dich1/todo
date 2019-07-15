@@ -1,13 +1,11 @@
-<!doctype html>
-<html lang="ja"><head>
-  <meta charset="utf8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+@extends('layout')
+@section('title')
   <title>新規作成 | Commit</title>
-  <meta name="descpription" content="〇〇を使って、【2019年12月1日までにやりたい20個のこと】に挑戦中！">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css" media="all">
-</head>
-<body>
+@endsection
+@section('css')
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
+@endsection
+@section('header')
   <header id="header" class="">
     <div class="wrap">
       <h1>Commit</h1>
@@ -18,8 +16,10 @@
       </div>
     </div>
   </header>
+@endsection
 
-
+@section('content')
+    @include('error')
 
   <div class="breadcrumb wrap">
     <ul>
@@ -80,14 +80,18 @@
     </div>
   </main>
 
+@endsection
+@section('scripts')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+  <script>
+    $('.date-picker').datepicker({
+        format: 'yyyy/mm/dd'
+    });
 
-
-  <footer id="footer" class="wrap">
-    <small>© Copyright 2019 xxx All rights reserved.</small>
-  </footer>
-
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
-
-
-</body></html>
+    var addFormCount = 1;
+    $('#addForm').click(function(){
+      $('#content-field-' + addFormCount).show();
+      addFormCount++;
+    });
+  </script>
+@endsection
