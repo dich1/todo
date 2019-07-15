@@ -31,9 +31,20 @@
     <div class="wrap">
       <h1>Commit</h1>
       <div class="header-link">
-        <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
-        <a href="#" class="header-link-login">ログイン</a>
-        <a href="#" class="header-link-registration">新規登録</a>
+        @guest
+          <a class="header-link-login" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+          @if (Route::has('register'))
+            <a class="header-link-registration" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+          @endif
+        @else
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+          <a class="header-link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        @endguest
       </div>
     </div>
     </header>
