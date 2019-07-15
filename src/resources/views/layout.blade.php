@@ -37,10 +37,10 @@
             <a class="header-link-registration" href="{{ route('register') }}">{{ __('新規登録') }}</a>
           @endif
         @else
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <span class="caret"></span>
+          <a id="" class="" href="{{ route('home') }}" role="button">
+            {{ Auth::user()->name }}
           </a>
-          <a class="header-link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+          <a class="header-link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>
@@ -50,7 +50,7 @@
     </header>
     @yield('content')
     <footer id="footer" class="wrap">
-        <small>© Copyright 2019 xxx All rights reserved.</small>
+        <small>© Copyright 2019 All rights reserved.</small>
     </footer>
 
     <!-- Bootstrap core JavaScript

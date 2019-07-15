@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Commit;
+use App\CommitGroup;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $commits = Commit::orderBy('id', 'desc')->paginate(10);
+        return view('auth.mypage', compact('commits'));
     }
 }
