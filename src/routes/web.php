@@ -47,3 +47,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('commits', 'CommitController');
+Route::resource('commitGroups', 'CommitGroupController', [
+  'only' => ['destroy']
+]);
