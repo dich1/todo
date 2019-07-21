@@ -53,7 +53,7 @@
                           <span class="help-block">{{ $errors->first("status") }}</span>
                          @endif
                     </div>
-                    <span class="{{ (!old("status")) ? 'incomplete' : 'complete' }}">{{ (!old("status")) ? '未完了に戻す' : '完了にする' }}</span>
+                    <span class="{{ (!old("status") && ($commitGroup->status)) ? 'incomplete' : 'completion' }}">{{ (!old("status") && ($commitGroup->status)) ? '未完了に戻す' : '完了にする' }}</span>
                     <div class="form-group @if($errors->has('priority')) has-error @endif">
                       <input type="hidden" id="priority-field-{{ $key }}" name="priority[{{ $key }}]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
                         @if($errors->has("priority"))
@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group @if($errors->has('content')) has-error @endif">
                 @if ($commit->status)
-                <p class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
+                  <p id="content-field-{{ $key }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
                 @else
                   <input type="text" id="content-field-{{ $key }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
                   @if($errors->has("content"))
@@ -112,5 +112,29 @@
       $('#content-field-' + addFormCount).show();
       addFormCount++;
     });
+
+    $(document).on('click','.completion', function(){
+        changeStatus(this, 1, 'incomplete', '未完了に戻す');
+    });
+
+    $(document).on('click','.incomplete', function(){
+        changeStatus(this, 0, 'completion', '完了にする');
+    });
+
+    function changeStatus(event, value, className, statusText) {
+        $(event).removeClass().addClass(className);
+        $(event).text(statusText);
+        var index = $(event).prev().children().attr('id').slice(-1);
+        var contentId = '#content-field-' + index;
+        var content = (value === 1) ? $(contentId).val() : $(contentId).children().text();
+        var contentParent = $(contentId).parent();
+        contentParent.empty();
+        var appendText = (value === 1) 
+                       ? '<p id="content-field-' + index + '" class="completion-txt"><span>' + content + '</span></p>' 
+                       : '<input type="text" id="content-field-' + index + '" name="content[]" class="form-control" value="' + content + '"/>';
+        contentParent.append(appendText);
+        var statusId = '#status-field-' + index;
+        $(statusId).val(value);
+    }
   </script>
 @endsection
