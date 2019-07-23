@@ -43,19 +43,19 @@
             </span>
             <div class="">
               @foreach($commit->commitGroups as $key => $commitGroup)
-              <div class="commit-item-bloc">
+              <div id="commit-item-bloc-{{ $key }}" class="commit-item-bloc">
                 <div class="commit-item-bloc-num">
                   <span class="num">{{ $key + 1 }}</span>
                   <div class="">
                     <div class="form-group @if($errors->has('status')) has-error @endif">
-                      <input type="hidden" id="status-field-{{ $key }}" name="status[{{ $key }}]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
+                      <input type="hidden" id="status-field-{{ $key }}" name="status[]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
                          @if($errors->has("status"))
                           <span class="help-block">{{ $errors->first("status") }}</span>
                          @endif
                     </div>
                     <span class="{{ (!old("status") && ($commitGroup->status)) ? 'incomplete' : 'completion' }}">{{ (!old("status") && ($commitGroup->status)) ? '未完了に戻す' : '完了にする' }}</span>
                     <div class="form-group @if($errors->has('priority')) has-error @endif">
-                      <input type="hidden" id="priority-field-{{ $key }}" name="priority[{{ $key }}]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
+                      <input type="hidden" id="priority-field-{{ $key }}" name="priority[]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
                         @if($errors->has("priority"))
                           <span class="help-block">{{ $errors->first("priority") }}</span>
                         @endif
@@ -136,5 +136,74 @@
         var statusId = '#status-field-' + index;
         $(statusId).val(value);
     }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        var cards = document.querySelectorAll('.commit-item-bloc');
+         
+        var swapCards = function(card1, card2){
+            var duration = 300;
+ 
+            if(!card2 || !card2.classList.contains('commit-item-bloc')) return;
+ 
+            var orgDuration1 = card1.style.transitionDuration;
+            var orgDuration2 = card2.style.transitionDuration;
+ 
+            card1.style.transitionDuration = duration + 'ms';
+            card2.style.transitionDuration = duration + 'ms';
+ 
+            var diff = card2.offsetTop - card1.offsetTop;
+ 
+            if(diff > 0){
+                var spacing = card2.offsetTop - (card1.offsetTop + card1.offsetHeight);
+                card1.style.transform = "translateY(" + (card2.offsetHeight + spacing) + "px)";
+                replaceNextAttribute(card1);
+                card2.style.transform = "translateY(" + (-diff) + "px)";
+                replacePreviousAttribute(card2);
+            } else {
+                var spacing = card1.offsetTop - (card2.offsetTop + card2.offsetHeight);
+                card1.style.transform = "translateY(" + (diff) + "px)";
+                replacePreviousAttribute(card1);
+                card2.style.transform = "translateY(" + (card1.offsetHeight + spacing) + "px)";
+                replaceNextAttribute(card2);
+            }
+            setTimeout(function(){
+                card1.style.transitionDuration = orgDuration1;
+                card2.style.transitionDuration = orgDuration2;
+                card1.style.transform = "translateY(0)";
+                card2.style.transform = "translateY(0)";
+ 
+                if(diff < 0){
+                    card1.parentNode.insertBefore(card1, card2);
+                } else {
+                    card1.parentNode.insertBefore(card2, card1);
+                }
+            }, duration);
+        };
+
+        var replaceNextAttribute = function(card) {
+            var indexNumber = Number(card.querySelector('.num').innerText) - 1;
+            var currentIndexString = String(indexNumber);
+            var nextIndexString = String(Number(indexNumber) + 1);
+            card.querySelector("input[name='priority[]']").value = nextIndexString;
+            card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) + 1);
+        };
+
+        var replacePreviousAttribute = function(card) {
+            var indexNumber = Number(card.querySelector('.num').innerText) - 1;
+            var currentIndexString = String(indexNumber);
+            var previousIndexString = String(Number(indexNumber) - 1);
+            card.querySelector("input[name='priority[]']").value = previousIndexString;
+            card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) - 1);
+        };
+ 
+        cards.forEach(function(card){
+            card.querySelector(".move-up").addEventListener('click', function(){
+                swapCards(card, card.previousElementSibling);
+            });
+            card.querySelector(".move-down").addEventListener('click', function(){
+                swapCards(card, card.nextElementSibling);
+            });
+        });
+    });
   </script>
 @endsection
