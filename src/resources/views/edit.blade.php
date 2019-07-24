@@ -43,37 +43,40 @@
             </span>
             <div class="">
               @foreach($commit->commitGroups as $key => $commitGroup)
-              <div id="commit-item-bloc-{{ $key }}" class="commit-item-bloc">
+              <div id="commit-item-bloc-{{ $commitGroup->id }}" class="commit-item-bloc">
                 <div class="commit-item-bloc-num">
                   <span class="num">{{ $key + 1 }}</span>
                   <div class="">
+                    <div class="form-group @if($errors->has('id')) has-error @endif">
+                      <input type="hidden" id="id-field-{{ $commitGroup->id }}" name="commit-group-id[]" class="form-control" value="{{ is_null(old("id")) ? $commitGroup->id : old("id") }}"/>
+                         @if($errors->has("id"))
+                          <span class="help-block">{{ $errors->first("id") }}</span>
+                         @endif
+                    </div>
                     <div class="form-group @if($errors->has('status')) has-error @endif">
-                      <input type="hidden" id="status-field-{{ $key }}" name="status[]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
+                      <input type="hidden" id="status-field-{{ $commitGroup->id }}" name="status[]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
                          @if($errors->has("status"))
                           <span class="help-block">{{ $errors->first("status") }}</span>
                          @endif
                     </div>
                     <span class="{{ (!old("status") && ($commitGroup->status)) ? 'incomplete' : 'completion' }}">{{ (!old("status") && ($commitGroup->status)) ? '未完了に戻す' : '完了にする' }}</span>
                     <div class="form-group @if($errors->has('priority')) has-error @endif">
-                      <input type="hidden" id="priority-field-{{ $key }}" name="priority[]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
+                      <input type="hidden" id="priority-field-{{ $commitGroup->id }}" name="priority[]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
                         @if($errors->has("priority"))
                           <span class="help-block">{{ $errors->first("priority") }}</span>
                         @endif
                     </div>
                     <span class="move-up">↑</span>
                     <span class="move-down">↓</span>
-                    <form action="{{ route('commitGroups.destroy', $commitGroup->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <button type="submit" class="delete">×</button>
-                    </form>
+                    <span id="{{ $commitGroup->id }}" class="delete">×</span>
+                    <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
                   </div>
                 </div>
                 <div class="form-group @if($errors->has('content')) has-error @endif">
                 @if ($commit->status)
-                  <p id="content-field-{{ $key }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
+                  <p id="content-field-{{ $commitGroup->id }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
                 @else
-                  <input type="text" id="content-field-{{ $key }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
+                  <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
                   @if($errors->has("content"))
                     <span class="help-block">{{ $errors->first("content") }}</span>
                   @endif
@@ -119,6 +122,29 @@
 
     $(document).on('click','.incomplete', function(){
         changeStatus(this, 0, 'completion', '完了にする');
+    });
+
+    $('.delete').click(function(){
+        if (!confirm('削除しますか ?')) { 
+          return;
+        }
+        var id = this.id;
+        $.ajax({
+            type    : 'POST',
+            url     : location.protocol + '//' + location.hostname + /commitGroups/ + id,
+            dataType: 'text',
+            data    : { _token: $('#token').val(), _method: 'DELETE' },
+            async   : false,
+            timeout : 10000
+        }).done(function(data){
+            var targetElement = '#commit-item-bloc-' + id;
+            $(targetElement).remove();
+        }).fail(function(data, textStatus, errorThrown) {
+            console.log('エラーステータス：' + data.status);
+            console.log('ステータスメッセージ：' + textStatus);
+            console.log('エラーメッセージ：' + errorThrown.message);
+            alert('通信に失敗しました。');
+        });
     });
 
     function changeStatus(event, value, className, statusText) {

@@ -120,7 +120,7 @@ class CommitController extends Controller {
         $commit = Commit::findOrFail($id);
         $commit->delete();
 
-        return redirect()->route('commits.index')->with('message', 'Item deleted successfully.');
+        return response()->json([], 204);
     }
 
 }
