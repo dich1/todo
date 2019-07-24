@@ -150,7 +150,7 @@
     function changeStatus(event, value, className, statusText) {
         $(event).removeClass().addClass(className);
         $(event).text(statusText);
-        var index = $(event).prev().children().attr('id').slice(-1);
+        var index = $(event).prev().children().attr('id').split('-').pop();
         var contentId = '#content-field-' + index;
         var content = (value === 1) ? $(contentId).val() : $(contentId).children().text();
         var contentParent = $(contentId).parent();
