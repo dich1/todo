@@ -59,7 +59,7 @@ class CommitController extends Controller {
         $commit = Commit::find($commit->id);
         $commit->commitGroups()->saveMany($commitGroups);
 
-        return redirect()->route('commits.index')->with('message', 'Item created successfully.');
+        return redirect()->route('commits.show', $commit->id)->with('message', 'Item created successfully.');
     }
 
     /**
