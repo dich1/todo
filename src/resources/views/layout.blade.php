@@ -16,7 +16,11 @@
 
     <!-- Custom styles for this template -->
     <!-- <link href="starter-template.css" rel="stylesheet"> -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @if(app('env') == 'production')
+      <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
+    @else
+      <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @endif
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
