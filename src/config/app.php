@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Laralib\L5scaffold\GeneratorsServiceProvider::class ,
+        // Laralib\L5scaffold\GeneratorsServiceProvider::class ,
 
     ],
 
