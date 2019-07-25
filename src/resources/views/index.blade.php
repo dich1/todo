@@ -124,12 +124,4 @@
     </div>
   </div>
 
-
-
-  <a href="/edit" class="single-edit-btn">
-    <span>
-      <span>編集する</span>
-    </span>
-  </a>
-
 @endsection
