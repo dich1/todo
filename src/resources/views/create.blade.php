@@ -42,7 +42,7 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <?php for ($i = 0; $i < 20; $i++) { ?>
+              <?php for ($i = 0; $i < 100; $i++) { ?>
                 <?php if ($i < 10) { ?>
                     <input type="hidden" name="status[]" value="0">
                     <input type="hidden" name="priority[]" value="<?php echo $i ?>">
