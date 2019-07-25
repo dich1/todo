@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-  <title>2019.12.1までの20コミット | Commit</title>
+  <title>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
 @endsection
 @section('css')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
