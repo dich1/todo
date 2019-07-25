@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use App\Commit;
 use App\CommitGroup;
+use Auth;
+use DateTime;
 use Illuminate\Http\Request;
 
 class CommitController extends Controller {
@@ -29,6 +31,9 @@ class CommitController extends Controller {
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
         return view('create');
     }
 
@@ -66,8 +71,17 @@ class CommitController extends Controller {
     public function show($id)
     {
         $commit = Commit::findOrFail($id);
-
-        return view('commits.show', compact('commit'));
+        $limit = new DateTime($commit->limit);
+        $remainingDays = $limit->diff(new DateTime(date('Y-m-d')))->days;
+        $commit->commitGroups;
+        $counter = 0;
+        foreach($commit->commitGroups as $key => $commitGroup) {
+            if ($commitGroup->status) {
+                $counter += 1;
+            }
+        }
+        $remainingCommits = count($commit->commitGroups) - $counter;
+        return view('commits.show', compact('commit', 'remainingDays', 'remainingCommits'));
     }
 
     /**
