@@ -121,7 +121,7 @@ class CommitController extends Controller {
         }
         $commit->push();
 
-        return redirect()->route('commits.index')->with('message', 'Item updated successfully.');
+        return redirect()->route('commits.show', $commit->id);
     }
 
     /**
