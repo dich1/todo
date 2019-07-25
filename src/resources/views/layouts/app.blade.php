@@ -14,19 +14,23 @@
     @yield('title')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @if(app('env') == 'local')
+      <script src="{{ asset('js/app.js') }}" defer></script>
+    @else
+      <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    @if(app('env') == 'production')
-      <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-      <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
-    @else
+    @if(app('env') == 'local')
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @else
+      <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+      <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
     @endif
     @yield('css')
 </head>
