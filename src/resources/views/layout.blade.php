@@ -33,7 +33,7 @@
 <body>
     <header id="header" class="">
     <div class="wrap">
-      <h1>Commit</h1>
+      <h1><a href="/" >Commit</a></h1>
       <div class="header-link">
         @guest
           <a class="header-link-login" href="{{ route('login') }}">{{ __('ログイン') }}</a>
