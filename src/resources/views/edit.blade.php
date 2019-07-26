@@ -38,10 +38,10 @@
             <span class="commit-item-add">
               <span>Commit内容</span>
               <span>
-                <span class="add">項目を追加</span>
+                <span id="add-form" class="add">項目を追加</span>
               </span>
             </span>
-            <div class="">
+            <div class="commits">
               @foreach($commit->commitGroups as $key => $commitGroup)
               <div id="commit-item-bloc-{{ $commitGroup->id }}" class="commit-item-bloc">
                 <div class="commit-item-bloc-num">
