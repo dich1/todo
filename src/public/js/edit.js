@@ -18,7 +18,7 @@ $('#add-form').click(function(){
                      + '</div>'
                      + '<span class="move-up">↑</span>'
                      + '<span class="move-down">↓</span>'
-                     + '<span class="delete">×</span>'
+                     + '<span class="delete add-form">×</span>'
                      + '</div>'
                      + '</div>'
                      + '<div class="form-group">'
@@ -27,6 +27,10 @@ $('#add-form').click(function(){
                      + '</div>';
       $('.commits').append(addElement);
   }
+});
+
+$(document).on('click','.add-form', function(){
+    $(this).parents('.commit-item-bloc').remove();
 });
 
 $(document).on('click','.completion', function(){
