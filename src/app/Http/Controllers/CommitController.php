@@ -107,29 +107,32 @@ class CommitController extends Controller {
     public function update(Request $request, $id)
     {
         $commit = Commit::findOrFail($id);
-        $commit->fill($request->all())->save();
-
+        $commit->limit = $request->input("limit");
         $commitGroupIds = $request->input("commit-group-id");
         $contents = $request->input("content");
         $statusies = $request->input("status");
         $priorities = $request->input("priority");
 
+        $commit->status = (count(array_unique($statusies)) == 1) ? 1 : 0;
+
         $commitGroups = array();
-        foreach ($contents as $key => $content) {
-            if (!empty($content) && !is_null($commitGroupIds[$key])) {
+        foreach ($statusies as $key => $status) {
+            if (!is_null($commitGroupIds[$key])) {
                 $commit->commitGroups[$key]->priority = $priorities[$key];
                 $commit->commitGroups[$key]->status = $statusies[$key];
-                $commit->commitGroups[$key]->content = $content;
+                if (!empty($content)) {
+                    $commit->commitGroups[$key]->content = $content;
+                }
             } else {
                 $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $content]);
                 $commitGroups[$key] = $commitGroup;
             }
         }
         $commit->push();
-        $commit = Commit::find($commit->id);
+        $commit = Commit::find($id);
         $commit->commitGroups()->saveMany($commitGroups);
 
-        return redirect()->route('commits.show', $commit->id);
+        return redirect()->route('commits.show', $id);
     }
 
     /**

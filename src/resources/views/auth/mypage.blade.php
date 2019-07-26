@@ -65,7 +65,7 @@
             <li>
               <a href="{{ route('commits.show', $commit->id) }}" target="_blank">
                 <div class="">
-                  <h3>2019.12.1までの20コミット</h3>
+                  <h3>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
                     @foreach($commit->commitGroups as $key => $commitGroup)
                       @if ($key < 2)
