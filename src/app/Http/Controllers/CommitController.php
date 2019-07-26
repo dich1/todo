@@ -109,17 +109,25 @@ class CommitController extends Controller {
         $commit = Commit::findOrFail($id);
         $commit->fill($request->all())->save();
 
+        $commitGroupIds = $request->input("commit-group-id");
         $contents = $request->input("content");
         $statusies = $request->input("status");
         $priorities = $request->input("priority");
+
+        $commitGroups = array();
         foreach ($contents as $key => $content) {
-            if (!empty($content)) {
+            if (!empty($content) && !is_null($commitGroupIds[$key])) {
                 $commit->commitGroups[$key]->priority = $priorities[$key];
                 $commit->commitGroups[$key]->status = $statusies[$key];
                 $commit->commitGroups[$key]->content = $content;
+            } else {
+                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $content]);
+                $commitGroups[$key] = $commitGroup;
             }
         }
         $commit->push();
+        $commit = Commit::find($commit->id);
+        $commit->commitGroups()->saveMany($commitGroups);
 
         return redirect()->route('commits.show', $commit->id);
     }

@@ -14,7 +14,7 @@ $('#add-form').click(function(){
                      + '<input type="hidden" name="status[]" class="form-control" value="0">'
                      + '</div>'
                      + '<div class="form-group ">'
-                     + '<input type="hidden" name="priority[]" class="form-control" value="">'
+                     + '<input type="hidden" name="priority[]" class="form-control" value="' + currentFormCount + '">'
                      + '</div>'
                      + '<span class="move-up">↑</span>'
                      + '<span class="move-down">↓</span>'
