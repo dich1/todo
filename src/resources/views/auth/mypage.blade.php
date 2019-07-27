@@ -4,6 +4,11 @@
   <main id="mypage">
     <div class="wrap ptb40-80">
       <div class="user-info-wrap">
+        @if (session('message'))
+          <div class="message alert alert-primary">
+            {{ session('message') }}
+          </div>
+        @endif
         <form method="POST" action="{{ route('home.update', Auth::user()->id) }}">
           @csrf
           <input type="hidden" name="_method" value="PUT">
@@ -94,4 +99,9 @@
     </span>
   </a>
 
+@endsection
+@section('scripts')
+  <script>
+    $('.message').fadeOut(1000);
+  </script>>
 @endsection
