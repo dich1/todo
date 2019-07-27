@@ -43,6 +43,6 @@ class HomeController extends Controller
         }
         $user->save();
         
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');;
     }
 }
