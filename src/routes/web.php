@@ -46,6 +46,8 @@ Route::get('/signup-confirmation', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
+
 Route::resource('commits', 'CommitController');
 Route::resource('commitGroups', 'CommitGroupController', [
   'only' => ['destroy']

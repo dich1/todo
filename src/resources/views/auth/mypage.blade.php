@@ -4,26 +4,28 @@
   <main id="mypage">
     <div class="wrap ptb40-80">
       <div class="user-info-wrap">
-        <form class="" action="index.html" method="post">
+        <form method="POST" action="{{ route('home.update', Auth::user()->id) }}">
+          @csrf
+          <input type="hidden" name="_method" value="PUT">
           <div class="info">
             <div class="user-name form-item">
               <span>ユーザー名</span>
               <div class="">
-                <input type="text" name="" value="{{ Auth::user()->name }}">
+                <input type="text" name="name" value="{{ Auth::user()->name }}">
               </div>
             </div>
 
             <div class="email form-item">
               <span>メールアドレス</span>
               <div class="">
-                <input type="email" name="" value="">
+                <input type="email" name="email" value="{{ Auth::user()->email }}">
               </div>
             </div>
 
             <div class="pass form-item">
               <span>パスワード</span>
               <div class="">
-                <input type="password" name="" value="" placeholder="変更しない場合は空欄">
+                <input type="password" name="password" value="" placeholder="変更しない場合は空欄">
               </div>
             </div>
           </div>

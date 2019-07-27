@@ -32,7 +32,17 @@ class HomeController extends Controller
         
         return view('auth.mypage', compact('commits'));
     }
-        $commits = Commit::orderBy('id', 'desc')->paginate(10);
-        return view('auth.mypage', compact('commits'));
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
+        if (!is_null($request->input("password"))) {
+            $user->password = bcrypt($request->input("password"));
+        }
+        $user->save();
+        
+        return redirect()->route('home');
     }
 }
