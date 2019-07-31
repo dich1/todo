@@ -1,77 +1,84 @@
 @extends('layouts.app')
+@section('title')
+  <title>新規登録 | Commit</title>
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+  <main class="sec mainpage-form-main" id="signup">
+    <div class="wrap600">
+      <div class="mainpage-form form">
+        <h2>新規登録</h2>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+        <div class="form-wrap">
+          <!-- <div class="sns-login">
+            <a href="#" class="twitter-login link">
+              <span><i class="fab fa-twitter"></i></span>
+              <span>Twitterで登録</span>
+            </a>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+            <a href="#" class="facebook-login link">
+              <span><i class="fab fa-facebook-f"></i></span>
+              <span>Facebookで登録</span>
+            </a>
+          </div> -->
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+          <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            <div class="">
+              <div class="form-block">
+                <p class="form-bloc-item-name">名前<span class="required">*</span></p>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-block">
+                <p class="form-bloc-item-name">メールアドレス<span class="required">*</span></p>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+              <div class="form-block">
+                <p class="form-bloc-item-name">パスワード(8文字以上)<span class="required">*</span></p>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="例:8文字以上" autocomplete="new-password">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+              <div class="form-block">
+                <p class="form-bloc-item-name">パスワード(確認用)<span class="required">*</span></p>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+              </div>
             </div>
+
+            <div class="form-consent">
+              <label>
+                <input type="checkbox" name="" required="" id="">
+
+                <span><a href="#" target="_blank" class="link">利用規約</a>に同意する。</span>
+              </label>
+              <!-- <p class="error">エラーが発生しました。</p> -->
+            </div>
+
+            <div class="form-submit">
+              <input type="submit" name="" value="登録する(無料)" class="link">
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </main>
 @endsection
