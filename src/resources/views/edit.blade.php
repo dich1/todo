@@ -27,7 +27,7 @@
           <div class="commit-item-wrap">
             <span class="commit-item">期限</span>
             <div class="form-group @if($errors->has('limit')) has-error @endif">
-              <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ is_null(old("limit")) ? $commit->limit : old("limit") }}" autocomplete="off"/>
+              <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ is_null(old("limit")) ? $commit->limit : old("limit") }}" autocomplete="off" required />
               @if($errors->has("limit"))
                 <span class="help-block">{{ $errors->first("limit") }}</span>
               @endif
@@ -76,7 +76,7 @@
                 @if ($commitGroup->status)
                   <p id="content-field-{{ $commitGroup->id }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
                 @else
-                  <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
+                  <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}" required />
                   @if($errors->has("content"))
                     <span class="help-block">{{ $errors->first("content") }}</span>
                   @endif
