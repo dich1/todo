@@ -31,7 +31,7 @@
           <div class="commit-item-wrap">
             <span class="commit-item">期限</span>
             <div class="form-group @if($errors->has('limit')) has-error @endif">
-              <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ old("limit") }}" autocomplete="off"/>
+              <input type="text" id="limit-field" name="limit" class="form-control date-picker" value="{{ old("limit") }}" autocomplete="off" required />
               @if($errors->has("limit"))
                 <span class="help-block">{{ $errors->first("limit") }}</span>
               @endif
@@ -42,7 +42,7 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <textarea id="commit-group" rows="8" cols="80"></textarea>
+              <textarea id="commit-group" rows="8" cols="80" required></textarea>
             </div>
           </div>
         </div>
