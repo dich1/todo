@@ -26,10 +26,8 @@
 
     <!-- Styles -->
     @if(app('env') == 'local')
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @else
-      <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
       <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
     @endif
     @yield('css')
