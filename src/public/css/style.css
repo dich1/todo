@@ -209,11 +209,25 @@ img {
   font-weight: bold;
   font-size: 18px;
 }
+#header h1 a {
+  display: block;
+  transition: .3s;
+}
+#header h1 a:hover {
+  opacity: .8;
+  transition: .3s;
+}
 #header .header-link-login,
 #header .header-link-logout {
   font-size: 12px;
   display: inline-block;
   font-weight: bold;
+  transition: .3s;
+}
+#header .header-link-login:hover,
+#header .header-link-logout:hover {
+  opacity: .8;
+  transition: .3s;
 }
 #header .header-link-registration {
   display: inline-block;
@@ -224,6 +238,11 @@ img {
   font-weight: bold;
   color: #fff;
   margin-left: 10px;
+  transition: .3s;
+}
+#header .header-link-registration:hover {
+  opacity: .8;
+  transition: .3s;
 }
 
 #single h1 {
@@ -311,8 +330,7 @@ img {
   font-size: 10px;
   border-radius: 3px;
   width: 45px;
-  background-color: #f94242;
-  color: #fff;
+  color: #f94242;
 }
 
 @media screen and (min-width: 768px) {
@@ -986,6 +1004,89 @@ img {
 @media screen and (min-width: 768px) {
   #edit .commit-item-wrap textarea {
     height: 400px;
+  }
+}
+#top .msg {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: solid 2px #333;
+}
+#top .msg:before, #top .msg:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: solid 2px #333;
+  border-radius: 50%;
+}
+#top .msg:before {
+  top: -12px;
+  left: -12px;
+}
+#top .msg:after {
+  bottom: -12px;
+  right: -12px;
+}
+#top .msg p {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 2;
+}
+#top .top-link {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto 0;
+  width: 90%;
+  max-width: 400px;
+}
+#top .top-link a {
+  width: 48%;
+  display: block;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 5px;
+  transition: .3s;
+  font-weight: bold;
+}
+#top .top-link a:hover {
+  opacity: .8;
+  transition: .3s;
+}
+#top .top-link .registration {
+  background-color: #333;
+  color: #fff;
+}
+#top .top-link .login {
+  background-color: #eee;
+}
+#top .description {
+  margin: 40px 0 0;
+}
+#top .description ul li {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+#top .description ul li:last-child {
+  margin-bottom: 0;
+}
+#top .description p {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  #top .msg {
+    height: 250px;
+  }
+  #top .msg p {
+    font-size: 18px;
+  }
+  #top .description {
+    margin: 60px 0 0;
   }
 }
 #footer {
