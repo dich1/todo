@@ -113,7 +113,7 @@ class CommitController extends Controller {
         $statusies = $request->input("status");
         $priorities = $request->input("priority");
 
-        $commit->status = (count(array_unique($statusies)) == 1) ? 1 : 0;
+        $commit->status = ($statusies[0] == 1 && count(array_unique($statusies)) == 1) ? 1 : 0;
 
         $commitGroups = array();
         foreach ($statusies as $key => $status) {
