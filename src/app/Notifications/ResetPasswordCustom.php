@@ -55,10 +55,6 @@ class ResetPasswordCustom extends Notification
      */
     public function toMail($notifiable)
     {
-        if (static::$toMailCallback) {
-            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
-        }
-        
         return (new MailMessage)
             ->subject(Lang::getFromJson('message.mail.password_reset.title'))
             ->line(Lang::getFromJson('message.mail.password_reset.line'))
