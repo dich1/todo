@@ -42,7 +42,7 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <textarea id="commit-group" name="content[]" rows="8" cols="80"></textarea>
+              <textarea id="commit-group" rows="8" cols="80"></textarea>
             </div>
           </div>
         </div>

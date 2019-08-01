@@ -11,13 +11,9 @@ function transform() {
         if (lines[i] == '') {
             continue;
         }
-        if (i === 0) {
-            document.getElementById('commit-group').value = lines[i];
-        } else {
-            createHidden("content[]", lines[i]);
-        }
         createHidden("status[]", '0');
         createHidden("priority[]", String(i));
+        createHidden("content[]", lines[i]);
     }
 }
 
