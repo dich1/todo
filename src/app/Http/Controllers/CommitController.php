@@ -34,7 +34,7 @@ class CommitController extends Controller {
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        return view('create');
+        return view('commits.create');
     }
 
     /**
@@ -94,7 +94,7 @@ class CommitController extends Controller {
     {
         $commit = Commit::findOrFail($id);
 
-        return view('edit', compact('commit'));
+        return view('commits.edit', compact('commit'));
     }
 
     /**
