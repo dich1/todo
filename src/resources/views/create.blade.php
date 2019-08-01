@@ -18,7 +18,7 @@
 
   <main id="commit-create">
     <div class="wrap600 ptb40-80">
-      <form action="{{ route('commits.store') }}" method="POST">
+      <form id="create" name="create" action="{{ route('commits.store') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group @if($errors->has('user_id')) has-error @endif">
         <input type="hidden" id="user_id-field" name="user_id" class="form-control" value="{{ Auth::id() }}"/>
@@ -42,33 +42,12 @@
             <span class="commit-item">Commit内容</span>
             <p class="attention">※1行に1つ記入してください。</p>
             <div class="">
-              <?php for ($i = 0; $i < 100; $i++) { ?>
-                <?php if ($i < 10) { ?>
-                    <input type="hidden" name="status[]" value="0">
-                    <input type="hidden" name="priority[]" value="<?php echo $i ?>">
-                    <div class="form-group @if($errors->has('content')) has-error @endif">
-                      <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}"/>
-                      @if($errors->has("content"))
-                         <span class="help-block">{{ $errors->first("content") }}</span>
-                      @endif
-                    </div>
-                <?php } else { ?>
-                    <input type="hidden" name="status[]" value="0">
-                    <input type="hidden" name="priority[]" value="<?php echo $i ?>">
-                    <div class="form-group @if($errors->has('content')) has-error @endif">
-                      <input type="text" id="content-field-<?php echo $i ?>" name="content[]" class="form-control" value="{{ old("content") }}" style="display: none;" />
-                      @if($errors->has("content"))
-                        <span class="help-block">{{ $errors->first("content") }}</span>
-                      @endif
-                    </div>
-                <?php } ?>
-              <?php } ?>
+              <textarea id="commit-group" name="content[]" rows="8" cols="80"></textarea>
             </div>
           </div>
         </div>
         <div>
-        <input type='button' value='+' id="addForm" class="btn btn-danger">
-        <input type="submit" name="" value="この内容で決定">
+        <input id="submit" type="submit" value="この内容で決定">
       </form>
     </div>
   </main>
@@ -78,13 +57,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
   <script>
     $('.date-picker').datepicker({
-        format: 'yyyy/mm/dd'
-    });
-
-    var addFormCount = 10;
-    $('#addForm').click(function(){
-      $('#content-field-' + addFormCount).show();
-      addFormCount++;
+        format: 'yyyy/mm/dd',
+        autoclose   : true
     });
   </script>
+  @if(app('env') == 'local')
+    <script src="{{ asset('js/create.js') }}" defer></script>
+  @else
+    <script src="{{ secure_asset('js/create.js') }}" defer></script>
+  @endif
 @endsection
