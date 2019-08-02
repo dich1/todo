@@ -20,7 +20,7 @@
 
       <div class="description">
         <ul>
-          <li>目標決めてをSNSで宣言する。</li>
+          <li>目標を決めてSNSで宣言する。</li>
           <li>チームでto doを共有する</li>
           <li>自己満で使う</li>
         </ul>
