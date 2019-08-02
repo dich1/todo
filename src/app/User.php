@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -42,17 +41,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function commits()
     {
         return $this->hasMany('App\Commit');
-    }
-
-    /**
-     * 新規登録メールの送信
-     *
-     * @param  string  $token
-     * @return void
-     */
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmailCustom);
     }
 
     /**
