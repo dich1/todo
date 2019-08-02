@@ -120,11 +120,11 @@ class CommitController extends Controller {
             if (!is_null($commitGroupIds[$key])) {
                 $commit->commitGroups[$key]->priority = $priorities[$key];
                 $commit->commitGroups[$key]->status = $statusies[$key];
-                if (!empty($content)) {
-                    $commit->commitGroups[$key]->content = $content;
+                if (!empty($contents[$key])) {
+                    $commit->commitGroups[$key]->content = $contents[$key];
                 }
             } else {
-                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $content]);
+                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $contents[$key]]);
                 $commitGroups[$key] = $commitGroup;
             }
         }
