@@ -16,14 +16,14 @@
             <div class="user-name form-item">
               <span>ユーザー名</span>
               <div class="">
-                <input type="text" name="name" value="{{ Auth::user()->name }}">
+                <input type="text" name="name" value="{{ Auth::user()->name }}" required>
               </div>
             </div>
 
             <div class="email form-item">
               <span>メールアドレス</span>
               <div class="">
-                <input type="email" name="email" value="{{ Auth::user()->email }}">
+                <input type="email" name="email" value="{{ Auth::user()->email }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="メールアドレスは、aaa@example.com のような形式で記入してください。" required>
               </div>
             </div>
 
