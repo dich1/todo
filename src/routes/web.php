@@ -24,8 +24,3 @@ Route::resource('commits', 'CommitController');
 Route::resource('commitGroups', 'CommitGroupController', [
   'only' => ['destroy']
 ]);
-
-Route::get('new-mail', function () {
-    return (new App\Notifications\CustomVerifyEmail())
-                ->toMail('宛先');
-});

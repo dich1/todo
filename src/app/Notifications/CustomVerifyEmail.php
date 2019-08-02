@@ -53,10 +53,10 @@ class CustomVerifyEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject(Lang::getFromJson('message.Mail.Verify.Title'))
-            ->line(Lang::getFromJson('message.Mail.Verify.Line'))
+            ->subject(Lang::getFromJson('message.mail.verify.title'))
+            ->line(Lang::getFromJson('message.mail.verify.line'))
             ->action(
-                Lang::getFromJson('message.Mail.Verify.Action'),
+                Lang::getFromJson('message.mail.verify.action'),
                 $this->verificationUrl($notifiable)
             );
     }
@@ -70,7 +70,7 @@ class CustomVerifyEmail extends Notification
     protected function verificationUrl($notifiable)
     {
         return URL::temporarySignedRoute(
-            'verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey()]
+            'verification.verify', Carbon::now()->addMinutes(60), ['id' => 1]
         );
     }
 
