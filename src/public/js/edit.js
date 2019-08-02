@@ -22,7 +22,7 @@ $('#add-form').click(function(){
                      + '</div>'
                      + '</div>'
                      + '<div class="form-group">'
-                     + '<input type="text" name="content[]" class="form-control" value="">'
+                     + '<input type="text" name="content[]" class="form-control" value="" required>'
                      + '</div>'
                      + '</div>';
       $('.commits').append(addElement);
