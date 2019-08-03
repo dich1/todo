@@ -13,6 +13,9 @@
 
     @yield('title')
 
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Scripts -->
     @if(app('env') == 'local')
       <script src="{{ asset('js/app.js') }}" defer></script>
