@@ -34,6 +34,19 @@
       <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
     @endif
     @yield('css')
+
+    @if(app('env') != 'local')
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145065409-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-145065409-1');
+      </script>
+      <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+      <script>window.LogRocket && window.LogRocket.init('rbjwku/commit');</script>
+    @endif
 </head>
 <body>
     <header id="header" class="">
