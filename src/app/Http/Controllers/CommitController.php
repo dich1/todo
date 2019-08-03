@@ -124,7 +124,8 @@ class CommitController extends Controller {
                     $commit->commitGroups[$key]->content = $contents[$key];
                 }
             } else {
-                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $contents[$key]]);
+                $contentKey = count($commitGroupIds) - (count($commitGroupIds) - count($contents)) - 1;
+                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $contents[$contentKey]]);
                 $commitGroups[$key] = $commitGroup;
             }
         }
