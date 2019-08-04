@@ -46,7 +46,7 @@
             @foreach($commits as $commit)
             @if (!$commit->status)
             <li>
-              <a href="{{ route('commits.show', $commit->id) }}" target="_blank">
+              <a href="{{ route('commits.edit', $commit->id) }}" target="_blank">
                 <div class="">
                   <h3>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
@@ -70,7 +70,7 @@
             @foreach($commits as $commit)
             @if ($commit->status)
             <li>
-              <a href="{{ route('commits.show', $commit->id) }}" target="_blank">
+              <a href="{{ route('commits.edit', $commit->id) }}" target="_blank">
                 <div class="">
                   <h3>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
