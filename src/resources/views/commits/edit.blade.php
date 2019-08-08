@@ -75,6 +75,7 @@
                 <div class="form-group @if($errors->has('content')) has-error @endif">
                 @if ($commitGroup->status)
                   <p id="content-field-{{ $commitGroup->id }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
+                  <input type="hidden" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
                 @else
                   <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}" required />
                   @if($errors->has("content"))

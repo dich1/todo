@@ -73,7 +73,8 @@ function changeStatus(event, value, className, statusText) {
     var contentParent = $(contentId).parent();
     contentParent.empty();
     var appendText = (value === 1) 
-                   ? '<p id="content-field-' + index + '" class="completion-txt"><span>' + content + '</span></p>' 
+                   ? '<p id="content-field-' + index + '" class="completion-txt"><span>' + content + '</span></p>'
+                   + '<input type="hidden" name="content[]" class="form-control" value="' + content + '"/>'
                    : '<input type="text" id="content-field-' + index + '" name="content[]" class="form-control" value="' + content + '"/>';
     contentParent.append(appendText);
     var statusId = '#status-field-' + index;
