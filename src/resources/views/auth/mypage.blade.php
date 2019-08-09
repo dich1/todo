@@ -5,7 +5,7 @@
     <div class="wrap ptb40-80">
       <div class="user-info-wrap">
         @if (session('message'))
-          <div class="message alert alert-primary">
+          <div class="message alert alert-success">
             {{ session('message') }}
           </div>
         @endif
