@@ -108,6 +108,7 @@ class CommitController extends Controller {
     {
         $commit = Commit::findOrFail($id);
         $commit->limit = $request->input("limit");
+
         $commitGroupIds = $request->input("commit-group-id");
         $contents = $request->input("content");
         $statusies = $request->input("status");
@@ -116,18 +117,25 @@ class CommitController extends Controller {
         $commit->status = ($statusies[0] == 1 && count(array_unique($statusies)) == 1) ? 1 : 0;
 
         $commitGroups = array();
+        $commitGroupKey = count(array_filter($commitGroupIds));
         foreach ($statusies as $key => $status) {
-            if (!is_null($commitGroupIds[$key])) {
-                $commit->commitGroups[$key]->priority = $priorities[$key];
-                $commit->commitGroups[$key]->status = $statusies[$key];
-                if (!empty($contents[$key])) {
-                    $commit->commitGroups[$key]->content = $contents[$key];
-                }
-            } else {
-                $contentKey = count($commitGroupIds) - (count($commitGroupIds) - count($contents)) - 1;
-                $commitGroup = new CommitGroup(['priority' => $key, 'status' => 0, 'content' => $contents[$contentKey]]);
-                $commitGroups[$key] = $commitGroup;
+            if (is_null($commitGroupIds[$key])) {
+                $commitGroup = new CommitGroup([
+                    'priority' => $priorities[$key], 
+                    'status' => 0, 
+                    'content' => $contents[$key]
+                ]);
+                $commitGroups[$commitGroupKey] = $commitGroup;
+                $commitGroupKey++;
+                array_splice($priorities, $key, 1);
+                array_splice($statusies, $key, 1);
+                array_splice($contents, $key, 1);
             }
+        }
+        foreach ($statusies as $key => $status) {
+            $commit->commitGroups[$key]->priority = $priorities[$key];
+            $commit->commitGroups[$key]->status = $statusies[$key];
+            $commit->commitGroups[$key]->content = $contents[$key];
         }
         $commit->push();
         $commit = Commit::find($id);
