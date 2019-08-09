@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')
   <title>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
 @endsection

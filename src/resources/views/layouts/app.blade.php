@@ -16,13 +16,6 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    @if(app('env') == 'local')
-      <script src="{{ asset('js/app.js') }}" defer></script>
-    @else
-      <script src="{{ secure_asset('js/app.js') }}" defer></script>
-    @endif
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

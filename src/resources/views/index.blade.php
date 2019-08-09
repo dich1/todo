@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')
   <title>2019.12.1までの20コミット | Commit</title>
 @endsection

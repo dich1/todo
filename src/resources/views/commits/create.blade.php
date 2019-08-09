@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')
   <title>新規作成 | Commit</title>
 @endsection
@@ -54,13 +54,7 @@
 
 @endsection
 @section('scripts')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-  <script>
-    $('.date-picker').datepicker({
-        format: 'yyyy/mm/dd',
-        autoclose   : true
-    });
-  </script>
+  <script src="{{ asset('js/datepicker.js') }}" defer></script>
   @if(app('env') == 'local')
     <script src="{{ asset('js/create.js') }}" defer></script>
   @else
