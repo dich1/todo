@@ -102,6 +102,6 @@
 @endsection
 @section('scripts')
   <script>
-    $('.message').fadeOut(1000);
+    $('.message').fadeOut(2000);
   </script>>
 @endsection
