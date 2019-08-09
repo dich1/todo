@@ -42,7 +42,7 @@
               </span>
             </span>
             <div class="commits">
-              @foreach($commit->commitGroups as $key => $commitGroup)
+              @foreach($commitGroups as $key => $commitGroup)
               <div id="commit-item-bloc-{{ $commitGroup->id }}" class="commit-item-bloc">
                 <div class="commit-item-bloc-num">
                   <span class="num">{{ $key + 1 }}</span>

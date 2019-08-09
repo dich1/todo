@@ -71,9 +71,9 @@ class CommitController extends Controller {
     public function show($id)
     {
         $commit = Commit::findOrFail($id);
+        $commitGroups = Commit::findOrFail($id)->commitGroups()->orderBy('priority')->get();
         $limit = new DateTime($commit->limit);
         $remainingDays = $limit->diff(new DateTime(date('Y-m-d')))->days;
-        $commit->commitGroups;
         $counter = 0;
         foreach($commit->commitGroups as $key => $commitGroup) {
             if ($commitGroup->status) {
@@ -81,7 +81,7 @@ class CommitController extends Controller {
             }
         }
         $remainingCommits = count($commit->commitGroups) - $counter;
-        return view('commits.show', compact('commit', 'remainingDays', 'remainingCommits'));
+        return view('commits.show', compact('commit', 'commitGroups', 'remainingDays', 'remainingCommits'));
     }
 
     /**
@@ -93,8 +93,9 @@ class CommitController extends Controller {
     public function edit($id)
     {
         $commit = Commit::findOrFail($id);
+        $commitGroups = Commit::findOrFail($id)->commitGroups()->orderBy('priority')->get();
 
-        return view('commits.edit', compact('commit'));
+        return view('commits.edit', compact('commit', 'commitGroups'));
     }
 
     /**

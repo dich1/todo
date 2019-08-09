@@ -19,7 +19,7 @@
       </div>
 
       <ol>
-      @foreach($commit->commitGroups as $key => $commitGroup)
+      @foreach($commitGroups as $key => $commitGroup)
         @if ($commitGroup->status)
           <li class="complete"><span class="txt">{{ $commitGroup->content }}</span><span class="complete-txt"><span>完了</span></span></li>
         @else
