@@ -4,6 +4,9 @@ $('#submit').on('click',function(e){
 });
 
 function transform() {
+    if (!document.getElementById('limit-field').checkValidity()) {
+        return;
+    }
     var text  = document.getElementById('commit-group').value.replace(/\r\n|\r/g, "\n");
     var lines = text.split('\n');
 
