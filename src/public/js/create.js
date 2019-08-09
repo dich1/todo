@@ -24,3 +24,16 @@ function createHidden(name, value) {
     input.value = value;
     document.forms['create'].appendChild(input);
 }
+
+let MAX_LINE = 100;
+let textarea = document.getElementById("commit-group");
+textarea.addEventListener("input", function() {
+    let lines = textarea.value.split("\n");
+    if (lines.length > MAX_LINE) {
+      var result = "";
+      for (var i = 0; i < MAX_LINE; i++) {
+        result += lines[i] + "\n";
+      }
+      textarea.value = result;
+    }
+}, false);
