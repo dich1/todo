@@ -16,7 +16,7 @@
             <div class="user-name form-item">
               <span>ユーザー名</span>
               <div class="">
-                <input type="text" name="name" value="{{ Auth::user()->name }}" required>
+                <input type="text" name="name" value="{{ Auth::user()->name }}" maxlength='25' required>
               </div>
             </div>
 
