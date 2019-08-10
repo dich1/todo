@@ -128,11 +128,14 @@ class CommitController extends Controller {
                 ]);
                 $commitGroups[$commitGroupKey] = $commitGroup;
                 $commitGroupKey++;
-                array_splice($priorities, $key, 1);
-                array_splice($statusies, $key, 1);
-                array_splice($contents, $key, 1);
+                unset($priorities[$key]);
+                unset($statusies[$key]);
+                unset($contents[$key]);
             }
         }
+        $priorities = array_values($priorities);
+        $statusies = array_values($statusies);
+        $contents = array_values($contents);
         foreach ($statusies as $key => $status) {
             $commit->commitGroups[$key]->priority = $priorities[$key];
             $commit->commitGroups[$key]->status = $statusies[$key];
