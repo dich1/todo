@@ -128,49 +128,21 @@ class CommitController extends Controller {
                 ]);
                 $commitGroups[$commitGroupKey] = $commitGroup;
                 $commitGroupKey++;
+                array_splice($priorities, $key, 1);
+                array_splice($statusies, $key, 1);
+                array_splice($contents, $key, 1);
             }
         }
         foreach ($statusies as $key => $status) {
-            if (is_null($commitGroupIds[$key])) {
-                unset($priorities[$key]);
-                unset($statusies[$key]);
-                unset($contents[$key]);
-            }
+            $commit->commitGroups[$key]->priority = $priorities[$key];
+            $commit->commitGroups[$key]->status = $statusies[$key];
+            $commit->commitGroups[$key]->content = $contents[$key];
         }
-        $this->setPriorities($commit, $priorities);
-        $this->setStatusies($commit, $statusies);
-        $this->setContents($commit, $contents);
-        
         $commit->push();
         $commit = Commit::find($id);
         $commit->commitGroups()->saveMany($commitGroups);
 
         return redirect()->route('commits.show', $id);
-    }
-
-    private function setPriorities($commit, $priorities)
-    {
-        $key = 0;
-        foreach ($priorities as $priority) {
-            $commit->commitGroups[$key]->priority = $priority;
-        }
-    }
-
-    private function setStatusies($commit, $statusies)
-    {
-        $key = 0;
-        foreach ($statusies as $status) {
-            $commit->commitGroups[$key]->status = $status;
-            $key += 1;
-        }
-    }
-
-    private function setContents($commit, $contents)
-    {
-        $key = 0;
-        foreach ($contents as $content) {
-            $commit->commitGroups[$key]->content = $content;
-        }
     }
 
     /**
