@@ -86,7 +86,7 @@ body {
   height: 100%;
 }
 
-a, a:visited, a:focus, a:hover {
+a {
   text-decoration: none;
   color: inherit;
 }
@@ -984,7 +984,6 @@ img {
   padding: 10px 0;
   font-weight: bold;
   line-height: 2;
-  box-shadow: none;
 }
 #edit .commit-item-wrap .completion-txt {
   width: 100%;
