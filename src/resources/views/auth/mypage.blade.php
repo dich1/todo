@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+  <title>マイページ | Commit</title>
+@endsection
 @section('content')
   <main id="mypage">
     <div class="wrap ptb40-80">
