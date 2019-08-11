@@ -36,9 +36,6 @@
             </div>
 
             <div class="form-submit">
-              <button type="submit" class="link btn btn-light">
-                {{ __('ログイン') }}
-              </button>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -46,6 +43,9 @@
                   {{ __('次回からログインしない') }}
                 </label>
               </div>
+              <button type="submit" class="link btn btn-light">
+                {{ __('ログイン') }}
+              </button>
             </div>
 
             <div class="form-signup">
