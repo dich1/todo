@@ -1,7 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\CommitRequest;
 use App\Http\Controllers\Controller;
 
 use App\Commit;
@@ -43,7 +43,7 @@ class CommitController extends Controller {
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CommitRequest $request)
     {
         $commit = new Commit();
         $commit->fill($request->all())->save();
