@@ -54,14 +54,14 @@
                          @endif
                     </div>
                     <div class="form-group @if($errors->has('status')) has-error @endif">
-                      <input type="hidden" id="status-field-{{ $commitGroup->id }}" name="status[]" class="form-control" value="{{ is_null(old("status")) ? $commitGroup->status : old("status") }}"/>
+                      <input type="hidden" id="status-field-{{ $commitGroup->id }}" name="status[]" class="form-control" value="{{ is_null(old("status")[$key]) ? $commitGroup->status : old("status")[$key] }}"/>
                          @if($errors->has("status"))
                           <span class="help-block">{{ $errors->first("status") }}</span>
                          @endif
                     </div>
                     <span class="{{ (!old("status") && ($commitGroup->status)) ? 'incomplete' : 'completion' }}">{{ (!old("status") && ($commitGroup->status)) ? '未完了に戻す' : '完了にする' }}</span>
                     <div class="form-group @if($errors->has('priority')) has-error @endif">
-                      <input type="hidden" id="priority-field-{{ $commitGroup->id }}" name="priority[]" class="form-control" value="{{ is_null(old("priority")) ? $commitGroup->priority : old("priority") }}"/>
+                      <input type="hidden" id="priority-field-{{ $commitGroup->id }}" name="priority[]" class="form-control" value="{{ is_null(old("priority")[$key]) ? $commitGroup->priority : old("priority")[$key] }}"/>
                         @if($errors->has("priority"))
                           <span class="help-block">{{ $errors->first("priority") }}</span>
                         @endif
@@ -75,9 +75,9 @@
                 <div class="form-group @if($errors->has('content')) has-error @endif">
                 @if ($commitGroup->status)
                   <p id="content-field-{{ $commitGroup->id }}" class="completion-txt"><span>{{ is_null(old("content")) ? $commitGroup->content : old("content") }}</span></p>
-                  <input type="hidden" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}"/>
+                  <input type="hidden" name="content[]" class="form-control" value="{{ is_null(old("content")[$key]) ? $commitGroup->content : old("content")[$key] }}"/>
                 @else
-                  <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")) ? $commitGroup->content : old("content") }}" required />
+                  <input type="text" id="content-field-{{ $commitGroup->id }}" name="content[]" class="form-control" value="{{ is_null(old("content")[$key]) ? $commitGroup->content : old("content")[$key] }}" required />
                   @if($errors->has("content"))
                     <span class="help-block">{{ $errors->first("content") }}</span>
                   @endif

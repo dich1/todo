@@ -105,7 +105,7 @@ class CommitController extends Controller {
      * @param Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CommitRequest $request, $id)
     {
         $commit = Commit::findOrFail($id);
         $commit->limit = $request->input("limit");
