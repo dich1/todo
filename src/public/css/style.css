@@ -677,6 +677,17 @@ img {
   color: #afafaf;
   font-size: 12px;
 }
+#login-button {
+  width: 100%;
+  -webkit-appearance: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #272727;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
 
 @media screen and (min-width: 768px) {
   #mypage .commit-list-wrap {

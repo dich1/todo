@@ -43,7 +43,7 @@
                   {{ __('次回からログインしない') }}
                 </label>
               </div>
-              <button type="submit" class="link btn btn-light">
+              <button id="login-button" type="submit">
                 {{ __('ログイン') }}
               </button>
             </div>
