@@ -49,9 +49,7 @@
             <a class="header-link-registration" href="{{ route('register') }}">{{ __('新規登録') }}</a>
           @endif
         @else
-          <a id="" class="" href="{{ route('home') }}" role="button">
-            {{ Auth::user()->name }}
-          </a>
+          <a id="" class="header-link-login" href="{{ route('home') }}" role="button">{{ __('マイページ') }}</a>
           <a class="header-link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('ログアウト') }}</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
