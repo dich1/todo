@@ -46,7 +46,7 @@
           <h2>現在のCommit</h2>
           <ul>
             @foreach($commits as $commit)
-            @if (!$commit->status)
+            @if (strtotime($commit->limit) > strtotime(date("Y-m-d")))
             <li>
               <a href="{{ route('commits.edit', $commit->id) }}" target="_blank">
                 <div class="">
@@ -70,7 +70,7 @@
           <h2>過去のCommit</h2>
           <ul>
             @foreach($commits as $commit)
-            @if ($commit->status)
+            @if (strtotime($commit->limit) < strtotime(date("Y-m-d")))
             <li>
               <a href="{{ route('commits.edit', $commit->id) }}" target="_blank">
                 <div class="">
