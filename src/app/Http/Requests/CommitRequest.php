@@ -24,7 +24,7 @@ class CommitRequest extends FormRequest
     public function rules()
     {
         return [
-            'limit' => 'required|date|after:today'
+            'limit' => 'required|date_format:Y-m-d:after:today'
         ];
     }
 }
