@@ -807,6 +807,12 @@ img {
   transition: .3s;
 }
 
+#limit-field {
+  width: 100%;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+}
+
 @media screen and (min-width: 768px) {
   #commit-create .commit-item-wrap textarea {
     height: 400px;

@@ -1,10 +1,10 @@
-$.getScript("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js", function(){
-    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.ja.min.js", function(){
+$('head link:last').after('<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css">');
+$.getScript("//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js", function(){
+    $.getScript("//ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery-ui-i18n.min.js", function(){
+        $.datepicker.setDefaults($.datepicker.regional["ja"]);
         $('.date-picker').datepicker({
-            format: 'yyyy-mm-dd',
-            language: 'ja',
-            autoclose: true,
-            startDate: '0'
+            dateFormat     : 'yy-mm-dd',
+            minDate        : '0'
         });
     });
 });
