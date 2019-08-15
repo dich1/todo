@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::findOrFail(Auth::user()->id);
-        $commits = $user->commits()->orderBy('id', 'desc')->paginate(10);
+        $commits = $user->commits()->orderBy('id', 'desc')->orderBy('created_at', 'desc')->paginate(10);
         
         return view('auth.mypage', compact('commits'));
     }
