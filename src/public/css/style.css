@@ -687,6 +687,11 @@ img {
   color: #fff;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
+}
+.form-check {
+  font-size: 12px;
+  margin: 10px 0 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -697,6 +702,9 @@ img {
   #mypage .commit-list-wrap .commit-list {
     width: 48%;
     margin-bottom: 0;
+  }
+  #login-button {
+    font-size: 16px;
   }
 }
 #commit-create .commit-item-wrap {
