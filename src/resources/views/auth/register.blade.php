@@ -32,7 +32,7 @@
 
                 @error('name')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong class="error">{{ $message }}</strong>
                     </span>
                 @enderror
               </div>
@@ -42,7 +42,7 @@
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong class="error">{{ $message }}</strong>
                     </span>
                 @enderror
               </div>
@@ -53,7 +53,7 @@
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong class="error">{{ $message }}</strong>
                     </span>
                 @enderror
               </div>
@@ -70,7 +70,6 @@
 
                 <span><a href="#" target="_blank" class="link">利用規約</a>に同意する。</span>
               </label>
-              <!-- <p class="error">エラーが発生しました。</p> -->
             </div>
 
             <div class="form-submit">
