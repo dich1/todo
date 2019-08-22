@@ -18,14 +18,25 @@
             <div class="user-name form-item">
               <span>ユーザー名</span>
               <div class="">
-                <input type="text" name="name" value="{{ Auth::user()->name }}" maxlength='25' required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" maxlength='25' required>
+                @error('name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong class="error">{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
 
             <div class="email form-item">
               <span>メールアドレス</span>
               <div class="">
-                <input type="email" name="email" value="{{ Auth::user()->email }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="メールアドレスは、aaa@example.com のような形式で記入してください。" required>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" >
+
+                @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong class="error">{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
 
@@ -33,6 +44,12 @@
               <span>パスワード</span>
               <div class="">
                 <input type="password" name="password" value="" pattern="^(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?[!-/:-@[-`{-~])[!-~]{8,100}$" title="パスワードは、半角英数字記号をそれぞれ1種類以上含む8文字以上16文字以下で記入してください。" placeholder="変更しない場合は空欄">
+
+                @error('password')
+                  <span class="invalid-feedback" role="alert">
+                    <strong class="error">{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
           </div>

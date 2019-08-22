@@ -7,6 +7,7 @@ use App\CommitGroup;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,7 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $this->validator($request->all())->validate();
         $user->name = $request->input("name");
         $user->email = $request->input("email");
         if (!is_null($request->input("password"))) {
@@ -44,5 +46,19 @@ class HomeController extends Controller
         $user->save();
         
         return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');;
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['string', 'email', 'max:255'],
+        ]);
     }
 }
