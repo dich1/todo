@@ -30,7 +30,7 @@
             <div class="email form-item">
               <span>メールアドレス</span>
               <div class="">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" >
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="メールアドレスは、aaa@example.com のような形式で記入してください。" required>
 
                 @error('email')
                   <span class="invalid-feedback" role="alert">
