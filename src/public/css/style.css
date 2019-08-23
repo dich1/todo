@@ -223,6 +223,7 @@ img {
   display: inline-block;
   font-weight: bold;
   transition: .3s;
+  margin-left: 10px
 }
 #header .header-link-login:hover,
 #header .header-link-logout:hover {
