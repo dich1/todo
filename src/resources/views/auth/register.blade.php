@@ -92,5 +92,5 @@
             confirm.setCustomValidity('');
         }
     }
-  </script>>
+  </script>
 @endsection

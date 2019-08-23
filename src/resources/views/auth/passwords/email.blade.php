@@ -22,7 +22,7 @@
             @csrf
             <div class="">
               <div class="form-block">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="メールアドレスは、aaa@example.com のような形式で記入してください。" required autocomplete="email" autofocus>
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
