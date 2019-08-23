@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  <title>2019.12.1までの20コミット | Commit</title>
+  <title>Commit - コミットを共有&管理できるサービス</title>
 @endsection
 @section('css')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">

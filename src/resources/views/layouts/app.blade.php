@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="descpription" content="〇〇を使って、【2019年12月1日までにやりたい20個のこと】に挑戦中！">
+    <meta name="descpription" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
