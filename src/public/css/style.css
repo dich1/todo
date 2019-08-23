@@ -846,6 +846,8 @@ img {
   width: 100%;
   border: 1px solid #d4d4d4;
   border-radius: 5px;
+  height: 40px;
+  padding: 10px;
 }
 
 @media screen and (min-width: 768px) {
