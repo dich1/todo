@@ -25,7 +25,7 @@
 
               <div class="form-block">
                 <p class="form-bloc-item-name">パスワード(8文字以上)<span class="required">*</span></p>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" pattern="^(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?[!-/:-@[-`{-~])[!-~]{8,100}$" title="パスワードは、半角英数字記号をそれぞれ1種類以上含む8文字以上16文字以下で記入してください。" required autocomplete="new-password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                 @error('password')
                   <span class="invalid-feedback" role="alert">

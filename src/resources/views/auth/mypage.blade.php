@@ -43,7 +43,7 @@
             <div class="pass form-item">
               <span>パスワード</span>
               <div class="">
-                <input type="password" name="password" value="" pattern="^(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?[!-/:-@[-`{-~])[!-~]{8,100}$" title="パスワードは、半角英数字記号をそれぞれ1種類以上含む8文字以上16文字以下で記入してください。" placeholder="変更しない場合は空欄">
+                <input type="password" name="password" value="" placeholder="変更しない場合は空欄">
 
                 @error('password')
                   <span class="invalid-feedback" role="alert">
