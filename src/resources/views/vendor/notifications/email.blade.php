@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# @lang('Whoops!')
+# @lang('message.mail.whoops')
 @else
-  @lang('こんにちは。')
+  @lang('message.mail.opning')
 @endif
 @endif
 
@@ -43,12 +43,12 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-{{ config('app.name') }}
+@lang('message.mail.regards')<br>{{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
-@slot('subcopy')
+@component('mail::subcopy')
 @lang(
     "\":actionText\" ボタンが利用できない場合は、以下のURLをコピー＆ペーストしてブラウザから直接アクセスしてください。\n".
     '[:actionURL](:actionURL)',
@@ -57,6 +57,6 @@
         'actionURL' => $actionUrl,
     ]
 )
-@endslot
+@endcomponent
 @endisset
 @endcomponent
