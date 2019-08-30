@@ -106,7 +106,9 @@
   <script src="{{ asset('js/datepicker.js') }}" defer></script>
   @if(app('env') == 'local')
     <script src="{{ asset('js/edit.js') }}" defer></script>
+    <script src="{{ asset('js/delete.js') }}" defer></script>
   @else
     <script src="{{ secure_asset('js/edit.js') }}" defer></script>
+    <script src="{{ secure_asset('js/delete.js') }}" defer></script>
   @endif
 @endsection

@@ -77,6 +77,8 @@
                   </ol>
                 </div>
                 <span class="arrow"></span>
+                <span id="{{ $commit->id }}" class="delete">✖️</span>
+                <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
             @endif
@@ -88,8 +90,8 @@
           <ul>
             @foreach($commits as $commit)
             @if (strtotime($commit->limit) < strtotime(date("Y-m-d")))
-            <li>
-              <a href="{{ route('commits.show', $commit->id) }}" >
+            <li id="commit-item-bloc-{{ $commit->id }}">
+              <a>
                 <div class="">
                   <h3>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
@@ -100,7 +102,8 @@
                     @endforeach
                   </ol>
                 </div>
-                <span class="arrow"></span>
+                <span id="{{ $commit->id }}" class="delete">✖️</span>
+                <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
             @endif
@@ -120,7 +123,9 @@
 
 @endsection
 @section('scripts')
-  <script>
-    $('.message').fadeOut(2000);
-  </script>>
+  @if(app('env') == 'local')
+    <script src="{{ asset('js/delete.js') }}" defer></script>
+  @else
+    <script src="{{ secure_asset('js/delete.js') }}" defer></script>
+  @endif
 @endsection
