@@ -84,7 +84,7 @@ function changeStatus(event, value, className, statusText) {
 document.addEventListener('DOMContentLoaded', function(){
     var cards = document.querySelectorAll('.commit-item-bloc');
      
-    var swapCards = function(card1, card2){
+    function swapCards(card1, card2){
         var duration = 300;
 
         if(!card2 || !card2.classList.contains('commit-item-bloc')) return;
@@ -122,23 +122,23 @@ document.addEventListener('DOMContentLoaded', function(){
                 card1.parentNode.insertBefore(card2, card1);
             }
         }, duration);
-    };
+    }
 
-    var replaceNextAttribute = function(card) {
+    function replaceNextAttribute(card) {
         var indexNumber = Number(card.querySelector('.num').innerText) - 1;
         var currentIndexString = String(indexNumber);
         var nextIndexString = String(Number(indexNumber) + 1);
         card.querySelector("input[name='priority[]']").value = nextIndexString;
         card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) + 1);
-    };
+    }
 
-    var replacePreviousAttribute = function(card) {
+    function replacePreviousAttribute(card) {
         var indexNumber = Number(card.querySelector('.num').innerText) - 1;
         var currentIndexString = String(indexNumber);
         var previousIndexString = String(Number(indexNumber) - 1);
         card.querySelector("input[name='priority[]']").value = previousIndexString;
         card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) - 1);
-    };
+    }
 
     cards.forEach(function(card){
         card.querySelector(".move-up").addEventListener('click', function(){
