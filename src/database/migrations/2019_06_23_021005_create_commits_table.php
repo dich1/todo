@@ -15,7 +15,6 @@ class CreateCommitsTable extends Migration {
 		Schema::create('commits', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('group_id')->unsigned();
             $table->date('limit');
             $table->boolean('status')->default(false);
             $table->timestamps();

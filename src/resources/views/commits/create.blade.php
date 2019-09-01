@@ -22,11 +22,6 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group @if($errors->has('user_id')) has-error @endif">
         <input type="hidden" id="user_id-field" name="user_id" class="form-control" value="{{ Auth::id() }}"/>
-        <input type="hidden" id="group_id-field" name="group_id" class="form-control" value="1"/>
-           @if($errors->has("group_id"))
-            <span class="help-block">{{ $errors->first("group_id") }}</span>
-           @endif
-        </div>
         <div class="">
           <div class="commit-item-wrap">
             <span class="commit-item">期限</span>

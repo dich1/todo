@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commit extends Model
 {
     protected $fillable = [
-        'name', 'user_id', 'group_id', 'limit'
+        'name', 'user_id', 'limit'
     ];
 
     public function user()
