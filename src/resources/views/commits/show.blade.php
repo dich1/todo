@@ -31,7 +31,9 @@
     </div>
   </div>
 
-
+  <div id="copy" data-clipboard-text="{{ url()->current() }}">コピーする</div>
+  <a id="twitter">twitter</a>
+  <a id="facebook">Facebook</a>
   @if (Auth::check() && Auth::id() === $commit->user_id)
   <a href="{{ route('commits.edit', $commit->id) }}" class="single-edit-btn">
     <span>
@@ -40,4 +42,11 @@
   </a>
   @endif
 
+@endsection
+@section('scripts')
+  @if(app('env') == 'local')
+    <script src="{{ asset('js/share.js') }}" defer></script>
+  @else
+    <script src="{{ secure_asset('js/share.js') }}" defer></script>
+  @endif
 @endsection
