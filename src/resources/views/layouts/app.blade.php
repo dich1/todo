@@ -6,6 +6,18 @@
 
     <meta name="descpription" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。">
     <meta name="author" content="">
+    @if(Request::is('commits/*'))
+      <meta property="og:title" content="{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット" />
+    @else
+      <meta property="og:title" content="Commit" />
+    @endif
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="サムネイル画像のURL" />
+    <meta property="og:site_name" content="Commit" />
+    <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。" />
+    <meta property="fb:app_id" content="496204527603841" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="favicon.ico">
 
     <!-- CSRF Token -->
