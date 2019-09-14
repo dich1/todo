@@ -63,7 +63,7 @@
           <h2>現在のCommit</h2>
           <ul>
             @foreach($commits as $commit)
-            @if (strtotime($commit->limit) >= strtotime(date("Y-m-d")))
+            @if (strtotime($commit->limit) > strtotime(date("Y-m-d")))
             <li>
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
