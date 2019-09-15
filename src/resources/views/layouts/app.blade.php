@@ -6,7 +6,7 @@
 
     <meta name="descpription" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。">
     <meta name="author" content="">
-    @if(Request::is('commits/*'))
+    @if(Request::is('commits/*') && !Request::is('commits/create'))
       <meta property="og:title" content="{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット" />
     @else
       <meta property="og:title" content="Commit" />
