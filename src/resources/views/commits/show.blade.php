@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  <title>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
+  <title>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
 @endsection
 @section('css')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
@@ -10,7 +10,7 @@
     @include('error')
   <div id="single">
     <div class="wrap600 ptb40-80">
-      <h1>{{$commit->limit}}までの{{count($commit->commitGroups)}}コミット</h1>
+      <h1>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h1>
 
       <div class="time-limit">
         <div class="">
