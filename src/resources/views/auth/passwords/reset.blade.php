@@ -13,17 +13,6 @@
             <div class="">
               <input type="hidden" name="token" value="{{ $token }}">
               <div class="form-block">
-                <p class="form-bloc-item-name">メールアドレス<span class="required">*</span></p>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="メールアドレスは、aaa@example.com のような形式で記入してください。" required autocomplete="email" autofocus>
-
-                @error('email')
-                  <span class="invalid-feedback" role="alert">
-                    <strong class="error">{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-
-              <div class="form-block">
                 <p class="form-bloc-item-name">パスワード(8文字以上)<span class="required">*</span></p>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 

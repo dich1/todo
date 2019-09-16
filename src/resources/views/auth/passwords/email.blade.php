@@ -11,9 +11,9 @@
 
         <div class="form-wrap">
           @if (session('status'))
-              <div class="alert alert-success" role="alert">
-                  {{ session('status') }}
-              </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
           @endif
           
           <p class="password_reset-txt">登録しているメールアドレスを入力してください。新しいパスワードを作成するためのリンクをメールでお送りします。</p>
