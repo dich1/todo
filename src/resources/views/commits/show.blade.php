@@ -34,7 +34,7 @@
   <div id="copy" data-clipboard-text="{{ url()->current() }}">コピーする</div>
   <a id="twitter">twitter</a>
   <a id="facebook">Facebook</a>
-  @if (Auth::check() && Auth::id() === $commit->user_id)
+  @if (Auth::check() && Auth::id() === $commit->user_id && strtotime($commit->limit) >= strtotime(date("Y-m-d")))
   <a href="{{ route('commits.edit', $commit->id) }}" class="single-edit-btn">
     <span>
       <span>編集する</span>
