@@ -5,6 +5,11 @@
 @section('content')
   <main id="mypage">
     <div class="wrap ptb40-80">
+      <form method="POST" action="{{ route('home.unsubscribe', Auth::user()->id) }}" onsubmit="if(confirm('退会しますか ? 退会すると全てのデータが失われます。')) { return true } else {return false };">
+        @csrf
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="退 会">
+      </form>
       <div class="user-info-wrap">
         @if (session('message'))
           <div class="message alert alert-success">

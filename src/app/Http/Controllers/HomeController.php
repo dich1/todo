@@ -48,6 +48,14 @@ class HomeController extends Controller
         return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');;
     }
 
+    public function unsubscribe(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        
+        return redirect('/')->with('message', '退会しました。');;
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
