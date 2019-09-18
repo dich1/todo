@@ -69,7 +69,7 @@
           <ul>
             @foreach($commits as $commit)
             @if (strtotime($commit->limit) >= strtotime(date("Y-m-d")))
-            <li>
+            <li id="commit-item-bloc-{{ $commit->id }}">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
                   <h3>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
