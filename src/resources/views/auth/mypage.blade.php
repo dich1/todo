@@ -67,8 +67,7 @@
         <div class="commit-list">
           <h2>現在のCommit</h2>
           <ul>
-            @foreach($commits as $commit)
-            @if (strtotime($commit->limit) >= strtotime(date("Y-m-d")))
+            @foreach($currentCommits as $commit)
             <li id="commit-item-bloc-{{ $commit->id }}">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
@@ -86,15 +85,13 @@
                 <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
-            @endif
             @endforeach
           </ul>
         </div>
         <div class="commit-list">
           <h2>過去のCommit</h2>
           <ul>
-            @foreach($commits as $commit)
-            @if (strtotime($commit->limit) < strtotime(date("Y-m-d")))
+            @foreach($previousCommits as $commit)
             <li id="commit-item-bloc-{{ $commit->id }}">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
@@ -111,7 +108,6 @@
                 <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
-            @endif
             @endforeach
           </ul>
         </div>

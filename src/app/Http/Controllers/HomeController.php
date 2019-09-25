@@ -29,9 +29,18 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::findOrFail(Auth::user()->id);
-        $commits = $user->commits()->orderBy('id', 'desc')->orderBy('created_at', 'desc')->paginate(10);
+        $currentCommits = $user->commits()
+                               ->whereDate('limit', '>=', date('Y-m-d'))
+                               ->orderBy('id', 'desc')
+                               ->orderBy('created_at', 'desc')
+                               ->paginate(10);
+        $previousCommits = $user->commits()
+                                ->whereDate('limit', '<', date('Y-m-d'))
+                                ->orderBy('id', 'desc')
+                                ->orderBy('created_at', 'desc')
+                                ->paginate(10);
         
-        return view('auth.mypage', compact('commits'));
+        return view('auth.mypage', compact('currentCommits', 'previousCommits'));
     }
 
     public function update(Request $request, $id)
@@ -45,7 +54,7 @@ class HomeController extends Controller
         }
         $user->save();
         
-        return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');;
+        return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');
     }
 
     public function unsubscribe(Request $request, $id)
