@@ -33,12 +33,12 @@ class HomeController extends Controller
                                ->whereDate('limit', '>=', date('Y-m-d'))
                                ->orderBy('id', 'desc')
                                ->orderBy('created_at', 'desc')
-                               ->paginate(10);
+                               ->paginate(100);
         $previousCommits = $user->commits()
                                 ->whereDate('limit', '<', date('Y-m-d'))
                                 ->orderBy('id', 'desc')
                                 ->orderBy('created_at', 'desc')
-                                ->paginate(10);
+                                ->paginate(100);
         
         return view('auth.mypage', compact('currentCommits', 'previousCommits'));
     }
