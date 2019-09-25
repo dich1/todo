@@ -15,7 +15,7 @@
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="サムネイル画像のURL" />
     <meta property="og:site_name" content="Commit" />
-    <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。1.{{ $commit->commitGroups[0]->content }}" />
+    <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。1.{{ $commit->commitGroups[0]->content }}..." />
     <meta property="fb:app_id" content="496204527603841" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="favicon.ico">
