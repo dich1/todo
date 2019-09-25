@@ -31,13 +31,11 @@ class HomeController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         $currentCommits = $user->commits()
                                ->whereDate('limit', '>=', date('Y-m-d'))
-                               ->orderBy('id', 'desc')
-                               ->orderBy('created_at', 'desc')
+                               ->orderBy('limit', 'asc')
                                ->paginate(100);
         $previousCommits = $user->commits()
                                 ->whereDate('limit', '<', date('Y-m-d'))
-                                ->orderBy('id', 'desc')
-                                ->orderBy('created_at', 'desc')
+                                ->orderBy('limit', 'desc')
                                 ->paginate(100);
         
         return view('auth.mypage', compact('currentCommits', 'previousCommits'));
