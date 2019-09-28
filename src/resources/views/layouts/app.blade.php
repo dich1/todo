@@ -8,14 +8,15 @@
     <meta name="author" content="">
     @if(Request::is('commits/*') && !Request::is('commits/create'))
       <meta property="og:title" content="{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット" />
+      <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。1.{{ $commit->commitGroups[0]->content }}..." />
     @else
       <meta property="og:title" content="Commit" />
+      <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。" />
     @endif
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="サムネイル画像のURL" />
     <meta property="og:site_name" content="Commit" />
-    <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。1.{{ $commit->commitGroups[0]->content }}..." />
     <meta property="fb:app_id" content="496204527603841" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="favicon.ico">
