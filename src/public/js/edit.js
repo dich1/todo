@@ -28,6 +28,7 @@ $('#add-form').click(function(){
                    + '</div>'
                    + '</div>';
     $('.commits').append(addElement);
+    setSwaps();
 });
 
 $(document).on('click','.add-form', function(){
