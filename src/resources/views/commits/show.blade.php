@@ -7,7 +7,7 @@
     @include('error')
   <div id="single">
     <div class="wrap600 ptb40-80">
-      <h1><span>{{date('Y.m.d', strtotime($commit->limit))}}</span>までの<span>{{count($commit->commitGroups)}}</span>コミット</h1>
+      <h1><span>{{date('Y/m/d', strtotime($commit->limit))}}</span>までの<span>{{count($commit->commitGroups)}}</span>コミット</h1>
 
       <div class="time-limit">
         <div class="">
