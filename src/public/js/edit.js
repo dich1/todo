@@ -58,65 +58,64 @@ function changeStatus(event, value, className, statusText) {
     $(statusId).val(value);
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-    var cards = document.querySelectorAll('.commit-item-bloc');
-     
-    function swapCards(card1, card2){
-        var duration = 300;
+function swapCards(card1, card2){
+    var duration = 300;
 
-        if(!card2 || !card2.classList.contains('commit-item-bloc')) return;
+    if(!card2 || !card2.classList.contains('commit-item-bloc')) return;
 
-        var orgDuration1 = card1.style.transitionDuration;
-        var orgDuration2 = card2.style.transitionDuration;
+    var orgDuration1 = card1.style.transitionDuration;
+    var orgDuration2 = card2.style.transitionDuration;
 
-        card1.style.transitionDuration = duration + 'ms';
-        card2.style.transitionDuration = duration + 'ms';
+    card1.style.transitionDuration = duration + 'ms';
+    card2.style.transitionDuration = duration + 'ms';
 
-        var diff = card2.offsetTop - card1.offsetTop;
+    var diff = card2.offsetTop - card1.offsetTop;
 
-        if(diff > 0){
-            var spacing = card2.offsetTop - (card1.offsetTop + card1.offsetHeight);
-            card1.style.transform = "translateY(" + (card2.offsetHeight + spacing) + "px)";
-            replaceNextAttribute(card1);
-            card2.style.transform = "translateY(" + (-diff) + "px)";
-            replacePreviousAttribute(card2);
+    if(diff > 0){
+        var spacing = card2.offsetTop - (card1.offsetTop + card1.offsetHeight);
+        card1.style.transform = "translateY(" + (card2.offsetHeight + spacing) + "px)";
+        replaceNextAttribute(card1);
+        card2.style.transform = "translateY(" + (-diff) + "px)";
+        replacePreviousAttribute(card2);
+    } else {
+        var spacing = card1.offsetTop - (card2.offsetTop + card2.offsetHeight);
+        card1.style.transform = "translateY(" + (diff) + "px)";
+        replacePreviousAttribute(card1);
+        card2.style.transform = "translateY(" + (card1.offsetHeight + spacing) + "px)";
+        replaceNextAttribute(card2);
+    }
+    setTimeout(function(){
+        card1.style.transitionDuration = orgDuration1;
+        card2.style.transitionDuration = orgDuration2;
+        card1.style.transform = "translateY(0)";
+        card2.style.transform = "translateY(0)";
+
+        if(diff < 0){
+            card1.parentNode.insertBefore(card1, card2);
         } else {
-            var spacing = card1.offsetTop - (card2.offsetTop + card2.offsetHeight);
-            card1.style.transform = "translateY(" + (diff) + "px)";
-            replacePreviousAttribute(card1);
-            card2.style.transform = "translateY(" + (card1.offsetHeight + spacing) + "px)";
-            replaceNextAttribute(card2);
+            card1.parentNode.insertBefore(card2, card1);
         }
-        setTimeout(function(){
-            card1.style.transitionDuration = orgDuration1;
-            card2.style.transitionDuration = orgDuration2;
-            card1.style.transform = "translateY(0)";
-            card2.style.transform = "translateY(0)";
+    }, duration);
+}
 
-            if(diff < 0){
-                card1.parentNode.insertBefore(card1, card2);
-            } else {
-                card1.parentNode.insertBefore(card2, card1);
-            }
-        }, duration);
-    }
+function replaceNextAttribute(card) {
+    var indexNumber = Number(card.querySelector('.num').innerText) - 1;
+    var currentIndexString = String(indexNumber);
+    var nextIndexString = String(Number(indexNumber) + 1);
+    card.querySelector("input[name='priority[]']").value = nextIndexString;
+    card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) + 1);
+}
 
-    function replaceNextAttribute(card) {
-        var indexNumber = Number(card.querySelector('.num').innerText) - 1;
-        var currentIndexString = String(indexNumber);
-        var nextIndexString = String(Number(indexNumber) + 1);
-        card.querySelector("input[name='priority[]']").value = nextIndexString;
-        card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) + 1);
-    }
+function replacePreviousAttribute(card) {
+    var indexNumber = Number(card.querySelector('.num').innerText) - 1;
+    var currentIndexString = String(indexNumber);
+    var previousIndexString = String(Number(indexNumber) - 1);
+    card.querySelector("input[name='priority[]']").value = previousIndexString;
+    card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) - 1);
+}
 
-    function replacePreviousAttribute(card) {
-        var indexNumber = Number(card.querySelector('.num').innerText) - 1;
-        var currentIndexString = String(indexNumber);
-        var previousIndexString = String(Number(indexNumber) - 1);
-        card.querySelector("input[name='priority[]']").value = previousIndexString;
-        card.querySelector('.num').innerText = String(Number(card.querySelector('.num').innerText) - 1);
-    }
-
+function setSwaps() {
+    var cards = document.querySelectorAll('.commit-item-bloc');
     cards.forEach(function(card){
         card.querySelector(".move-up").addEventListener('click', function(){
             swapCards(card, card.previousElementSibling);
@@ -125,4 +124,8 @@ document.addEventListener('DOMContentLoaded', function(){
             swapCards(card, card.nextElementSibling);
         });
     });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    setSwaps();
 });
