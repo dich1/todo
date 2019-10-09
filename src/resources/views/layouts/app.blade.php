@@ -4,18 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="descpription" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/webclip.png">
+
     <meta name="author" content="">
     @if(Request::is('commits/*') && !Request::is('commits/create'))
-      <meta property="og:title" content="{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット" />
-      <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。1.{{ $commit->commitGroups[0]->content }}..." />
+      <meta name="descpription" content="Commitを使って、【{{date('Y/m/d', strtotime($commit->limit))}}までにやりたい{{count($commit->commitGroups)}}個のこと】に挑戦中！">
+      <meta property="og:title" content="{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット" />
+      <meta property="og:description" content="Commitを使って、【{{date('Y/m/d', strtotime($commit->limit))}}までにやりたい{{count($commit->commitGroups)}}個のこと】に挑戦中！" />
     @else
+      <meta name="descpription" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。">
       <meta property="og:title" content="Commit" />
       <meta property="og:description" content="Commitは目標、to do、やりたいことなどを共有&管理できるサービスです。" />
     @endif
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:image" content="サムネイル画像のURL" />
+    <meta property="og:image" content="img/og.png" />
+    <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content="Commit" />
     <meta property="fb:app_id" content="496204527603841" />
     <meta name="twitter:card" content="summary_large_image" />
