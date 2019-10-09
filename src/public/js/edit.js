@@ -1,35 +1,42 @@
-var addFormCount = 1;
 $('#add-form').click(function(){
+    addForm();
+});
+
+function addForm() {
+    var addFormCount = 1;
     var currentFormCount = $(".num").length;
     var maxFormCount = 100;
     if (maxFormCount - currentFormCount === 0) {
         return;
     }
-    var addElement = '<div class="commit-item-bloc">'
-                   + '<div class="commit-item-bloc-num">'
-                   + '<span class="num">' + String(currentFormCount + 1) + '</span>'
-                   + '<div class="">'
-                   + '<div class="form-group ">'
-                   + '<input type="hidden" name="commit-group-id[]" class="form-control" value="">'
-                   + '</div>'
-                   + '<div class="form-group ">'
-                   + '<input type="hidden" name="status[]" class="form-control" value="0">'
-                   + '</div>'
-                   + '<div class="form-group ">'
-                   + '<input type="hidden" name="priority[]" class="form-control" value="' + currentFormCount + '">'
-                   + '</div>'
-                   + '<span class="move-up">↑</span>'
-                   + '<span class="move-down">↓</span>'
-                   + '<span class="delete add-form">×</span>'
-                   + '</div>'
-                   + '</div>'
-                   + '<div class="form-group">'
-                   + '<input type="text" name="content[]" class="form-control" value="" required>'
-                   + '</div>'
-                   + '</div>';
-    $('.commits').append(addElement);
+    $('.commits').append(createAddElement(currentFormCount));
     setSwaps();
-});
+}
+
+function createAddElement(currentFormCount) {
+    return '<div class="commit-item-bloc">'
+         + '<div class="commit-item-bloc-num">'
+         + '<span class="num">' + String(currentFormCount + 1) + '</span>'
+         + '<div class="">'
+         + '<div class="form-group ">'
+         + '<input type="hidden" name="commit-group-id[]" class="form-control" value="">'
+         + '</div>'
+         + '<div class="form-group ">'
+         + '<input type="hidden" name="status[]" class="form-control" value="0">'
+         + '</div>'
+         + '<div class="form-group ">'
+         + '<input type="hidden" name="priority[]" class="form-control" value="' + currentFormCount + '">'
+         + '</div>'
+         + '<span class="move-up">↑</span>'
+         + '<span class="move-down">↓</span>'
+         + '<span class="delete add-form">×</span>'
+         + '</div>'
+         + '</div>'
+         + '<div class="form-group">'
+         + '<input type="text" name="content[]" class="form-control" value="" required>'
+         + '</div>'
+         + '</div>';
+}
 
 $(document).on('click','.add-form', function(){
     $(this).parents('.commit-item-bloc').remove();
