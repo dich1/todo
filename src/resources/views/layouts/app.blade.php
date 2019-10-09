@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="img/webclip.png">
+    <link rel="shortcut icon" href="{{ secure_asset('img/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ secure_asset('img/webclip.png') }}">
 
     <meta name="author" content="">
     @if(Request::is('home') || Request::is('commits/*/edit'))
