@@ -5,11 +5,6 @@
 @section('content')
   <main id="mypage">
     <div class="wrap ptb40-80">
-      <form method="POST" action="{{ route('home.unsubscribe', Auth::user()->id) }}" onsubmit="if(confirm('退会しますか ? 退会すると全てのデータが失われます。')) { return true } else {return false };">
-        @csrf
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" name="" value="退 会">
-      </form>
       <div class="user-info-wrap">
         @if (session('message'))
           <div class="message alert alert-success">
@@ -81,8 +76,6 @@
                   </ol>
                 </div>
                 <span class="arrow"></span>
-                <span id="{{ $commit->id }}" class="delete">✖️</span>
-                <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
             @endforeach
@@ -104,8 +97,6 @@
                     @endforeach
                   </ol>
                 </div>
-                <span id="{{ $commit->id }}" class="delete">✖️</span>
-                <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
               </a>
             </li>
             @endforeach
@@ -122,11 +113,4 @@
     </span>
   </a>
 
-@endsection
-@section('scripts')
-  @if(app('env') == 'local')
-    <script src="{{ asset('js/delete.js') }}" defer></script>
-  @else
-    <script src="{{ secure_asset('js/delete.js') }}" defer></script>
-  @endif
 @endsection
