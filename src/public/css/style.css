@@ -266,6 +266,10 @@ img {
   width: 0;
   height: 0;
 }
+#single h1 span {
+  font-size: 22px;
+  color: #f64242;
+}
 #single .time-limit {
   text-align: center;
   margin-bottom: 40px;
@@ -279,6 +283,32 @@ img {
 #single .time-limit span:nth-child(4) {
   font-size: 20px;
   color: #f64242;
+}
+#single .shea {
+  display: flex;
+  justify-content: flex-end;
+}
+#single .shea .shea-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  border-radius: 50%;
+  text-align: center;
+}
+#single .shea .shea-btn .fab {
+  line-height: 30px;
+  color: #FFF;
+  font-size: 20px;
+}
+#single .shea .shea-btn-twitter {
+  background: #1da1f3;
+  margin-right: 10px;
+}
+#single .shea .shea-btn-facebook {
+  background: #3b75d4;
 }
 #single ol {
   counter-reset: number;
@@ -333,10 +363,44 @@ img {
   width: 45px;
   color: #f94242;
 }
+#single .btn-wrap {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+#single .btn-wrap .edit-btn {
+  width: 48%;
+  display: block;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #f94242;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 5px;
+  border-radius: 30px;
+}
+#single .btn-wrap .delete-btn {
+  width: 48%;
+  display: block;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #272727;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 5px;
+  border-radius: 30px;
+}
 
 @media screen and (min-width: 768px) {
   #single h1 {
+    font-size: 20px;
+  }
+  #single h1 span {
     font-size: 30px;
+    color: #f64242;
   }
   #single .time-limit {
     margin-bottom: 80px;
@@ -1139,6 +1203,30 @@ img {
   display: block;
   text-align: center;
   padding: 0 0 10px;
+  padding: 20px 0;
+}
+
+#footer ul li {
+  font-size: 12px;
+}
+
+#footer small {
+  font-size: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  #footer ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  #footer ul li {
+    margin-right: 20px;
+  }
+
+  #footer ul li:last-child {
+    margin-right: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
