@@ -73,7 +73,13 @@
     </header>
     @yield('content')
     <footer id="footer">
-        <small>© Copyright 2019 All rights reserved.</small>
+      <ul>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">退会</a></li>
+        <li><a href="https://webkore.site/" target="_blank">運営者ブログ</a></li>
+      </ul>
+      <small>© Copyright <?php echo date('Y'); ?> commmmit.site All rights reserved.</small>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
