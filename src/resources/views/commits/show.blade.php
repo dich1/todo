@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  <title>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
+  <title>{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット | Commit</title>
 @endsection
 
 @section('content')
@@ -40,10 +40,10 @@
           <a href="{{ route('commits.edit', $commit->id) }}" class="edit-btn">編集する</a>
         @endif
         @if (Auth::check() && Auth::id() === $commit->user_id)
-          <a href="{{ route('commits.destroy', $commit->id) }}" class="delete-btn">削除する</a>
+          <a id="{{ $commit->id }}" href="{{ route('home') }}" class="delete-btn delete">削除する</a>
+          <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
         @endif
       </div>
-
     </div>
   </div>
 
@@ -52,7 +52,9 @@
   <script src="//kit.fontawesome.com/dbfcc583ce.js" crossorigin="anonymous"></script>
   @if(app('env') == 'local')
     <script src="{{ asset('js/share.js') }}" defer></script>
+    <script src="{{ asset('js/delete.js') }}" defer></script>
   @else
     <script src="{{ secure_asset('js/share.js') }}" defer></script>
+    <script src="{{ secure_asset('js/delete.js') }}" defer></script>
   @endif
 @endsection
