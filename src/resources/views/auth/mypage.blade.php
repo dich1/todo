@@ -66,7 +66,7 @@
             <li id="commit-item-bloc-{{ $commit->id }}">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
-                  <h3>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
+                  <h3>{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
                     @foreach($commit->commitGroups as $key => $commitGroup)
                       @if ($key < 2)
@@ -88,7 +88,7 @@
             <li id="commit-item-bloc-{{ $commit->id }}">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
-                  <h3>{{date('Y.m.d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
+                  <h3>{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
                   <ol>
                     @foreach($commit->commitGroups as $key => $commitGroup)
                       @if ($key < 2)
