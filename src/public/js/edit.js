@@ -124,14 +124,18 @@ function replacePreviousAttribute(card) {
 }
 
 function setSwaps() {
-    var cards = document.querySelectorAll('.commit-item-bloc');
-    cards.forEach(function(card){
-        card.querySelector(".move-up").addEventListener('click', function(){
-            swapCards(card, card.previousElementSibling);
-        });
-        card.querySelector(".move-down").addEventListener('click', function(){
-            swapCards(card, card.nextElementSibling);
-        });
+    var cards = $('.commit-item-bloc');
+
+    cards.find('.move-up').off('click');
+    cards.find('.move-down').off('click');
+
+    cards.find('.move-up').on('click', function(e){
+        var card = $(this).closest('.commit-item-bloc')[0];
+        swapCards(card, card.previousElementSibling);
+    });
+    cards.find('.move-down').on('click', function(e){
+        var card = $(this).closest('.commit-item-bloc')[0];
+        swapCards(card, card.nextElementSibling);
     });
 }
 
