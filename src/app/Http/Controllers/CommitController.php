@@ -8,10 +8,15 @@ use App\Commit;
 use App\CommitGroup;
 use Auth;
 use DateTime;
-use Illuminate\Http\Request;
+use Request;
 
 class CommitController extends Controller {
 
+    public function __construct(){
+        if (Request::isMethod('post') || Request::is('commits/create') || Request::is('commits/*/edit')) {
+            $this->middleware('auth');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +36,6 @@ class CommitController extends Controller {
      */
     public function create()
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
         return view('commits.create');
     }
 
