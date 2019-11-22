@@ -60,7 +60,7 @@ class HomeController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         
-        return redirect('/')->with('message', '退会しました。');;
+        return response()->json([], 204);
     }
 
     /**
