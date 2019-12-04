@@ -125,7 +125,7 @@ class CommitController extends Controller {
             if (is_null($commitGroupIds[$key])) {
                 $commitGroup = new CommitGroup([
                     'priority' => $priorities[$key], 
-                    'status' => 0, 
+                    'status' => $status, 
                     'content' => $contents[$key]
                 ]);
                 $commitGroups[$commitGroupKey] = $commitGroup;
