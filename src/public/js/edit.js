@@ -54,18 +54,31 @@ $(document).on('click','.incomplete', function(){
 function changeStatus(event, value, className, statusText) {
     $(event).removeClass().addClass(className);
     $(event).text(statusText);
-    var index = $(event).prev().children().attr('id').split('-').pop();
-    var contentId = '#content-field-' + index;
-    var content = (value === 1) ? $(contentId).val() : $(contentId).children().text();
-    var contentParent = $(contentId).parent();
+
+    var commitItem = $(event).closest('.commit-item-bloc');
+    var index = '', content, contentId, contentParent;
+    
+    if($(event).prev().children().attr('id')){
+        index = $(event).prev().children().attr('id').split('-').pop();
+        contentId = '#content-field-' + index;
+        content = (value === 1) ? $(contentId).val() : $(contentId).children().text();
+        contentParent = $(contentId).parent();
+    } else {
+        contentParent = commitItem.find('[name^="content[]"]').parent();
+        content = (value === 1) 
+                ? commitItem.find('[name^="content[]"]').val() 
+                : commitItem.find('.completion-txt').text();
+    }
+    
     contentParent.empty();
     var appendText = (value === 1) 
                    ? '<p id="content-field-' + index + '" class="completion-txt"><span>' + content + '</span></p>'
                    + '<input type="hidden" name="content[]" class="form-control" value="' + content + '"/>'
                    : '<input type="text" id="content-field-' + index + '" name="content[]" class="form-control" value="' + content + '"/>';
     contentParent.append(appendText);
+
     var statusId = '#status-field-' + index;
-    $(statusId).val(value);
+    commitItem.find(statusId).val(value);
 }
 
 function swapCards(card1, card2){
