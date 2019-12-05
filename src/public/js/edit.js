@@ -52,13 +52,10 @@ $(document).on('click','.incomplete', function(){
 });
 
 function changeStatus(event, value, className, statusText) {
-    $(event).removeClass().addClass(className);
-    $(event).text(statusText);
-
     var commitItem = $(event).closest('.commit-item-bloc');
     var index = '', content, contentId, contentParent;
     
-    if($(event).prev().children().attr('id')){
+    if ($(event).prev().children().attr('id')) {
         index = $(event).prev().children().attr('id').split('-').pop();
         contentId = '#content-field-' + index;
         content = (value === 1) ? $(contentId).val() : $(contentId).children().text();
@@ -69,6 +66,11 @@ function changeStatus(event, value, className, statusText) {
                 ? commitItem.find('[name^="content[]"]').val() 
                 : commitItem.find('.completion-txt').text();
     }
+    if (content === '') {
+        return;
+    }
+    $(event).removeClass().addClass(className);
+    $(event).text(statusText);
     
     contentParent.empty();
     var appendText = (value === 1) 
