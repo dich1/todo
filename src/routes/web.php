@@ -29,7 +29,7 @@ Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
 Route::delete('/unsubscribe/{user_id}', 'HomeController@unsubscribe')->name('home.unsubscribe');
 
 Route::resource('commits', 'CommitController', [
-  'only' => ['index', 'store', 'edit', 'update', 'destroy']
+  'only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']
 ]);
 
 Route::resource('commitGroups', 'CommitGroupController', [
