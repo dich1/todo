@@ -24,21 +24,17 @@ Route::get('/verify', function(){
 
 Auth::routes(['verify' => true]);
 
-//Route::middleware('verified')->group(function () {
-//    Route::group(['middleware' => 'auth:user'], function () {
-        Route::get('/home', 'HomeController@index')->name('home');
-        Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
-        Route::delete('/unsubscribe/{user_id}', 'HomeController@unsubscribe')->name('home.unsubscribe');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
+Route::delete('/unsubscribe/{user_id}', 'HomeController@unsubscribe')->name('home.unsubscribe');
 
-        Route::resource('commits', 'CommitController', [
-          'only' => ['index', 'store', 'edit', 'update', 'destroy']
-        ]);
+Route::resource('commits', 'CommitController', [
+  'only' => ['index', 'store', 'edit', 'update', 'destroy']
+]);
 
-        Route::resource('commitGroups', 'CommitGroupController', [
-          'only' => ['destroy']
-        ]);
-//    });
-//});
+Route::resource('commitGroups', 'CommitGroupController', [
+  'only' => ['destroy']
+]);
 
 Route::resource('commits', 'CommitController', [
   'only' => ['show']

@@ -13,8 +13,9 @@ use Request;
 class CommitController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth')->except('show');
-        $this->middleware('verified')->except('show');
+        if (Request::isMethod('post') || Request::is('commits/create') || Request::is('commits/*/edit')) {
+            $this->middleware('auth');
+        }
     }
     /**
      * Display a listing of the resource.
