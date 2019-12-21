@@ -18,13 +18,28 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/verify', function(){
+    return view('auth.verify');
+});
+
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
-Route::delete('/unsubscribe/{user_id}', 'HomeController@unsubscribe')->name('home.unsubscribe');
+//Route::middleware('verified')->group(function () {
+//    Route::group(['middleware' => 'auth:user'], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::put('/home/{user_id}', 'HomeController@update')->name('home.update');
+        Route::delete('/unsubscribe/{user_id}', 'HomeController@unsubscribe')->name('home.unsubscribe');
 
-Route::resource('commits', 'CommitController');
-Route::resource('commitGroups', 'CommitGroupController', [
-  'only' => ['destroy']
+        Route::resource('commits', 'CommitController', [
+          'only' => ['index', 'store', 'edit', 'update', 'destroy']
+        ]);
+
+        Route::resource('commitGroups', 'CommitGroupController', [
+          'only' => ['destroy']
+        ]);
+//    });
+//});
+
+Route::resource('commits', 'CommitController', [
+  'only' => ['show']
 ]);

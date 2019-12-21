@@ -13,9 +13,8 @@ use Request;
 class CommitController extends Controller {
 
     public function __construct(){
-        if (Request::isMethod('post') || Request::is('commits/create') || Request::is('commits/*/edit')) {
-            $this->middleware('auth');
-        }
+        $this->middleware('auth')->except('show');
+        $this->middleware('verified')->except('show');
     }
     /**
      * Display a listing of the resource.
