@@ -1186,6 +1186,10 @@ img {
   margin-top: 10px;
 }
 
+#resend {
+  color: #0033cc;
+}
+
 @media screen and (min-width: 768px) {
   #top .msg {
     height: 250px;
