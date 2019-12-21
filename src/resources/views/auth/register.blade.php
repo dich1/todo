@@ -27,7 +27,7 @@
 
             <div class="">
               <div class="form-block">
-                <p class="form-bloc-item-name">名前<span class="required">*</span></p>
+                <p class="form-bloc-item-name">ユーザー名<span class="required">*</span></p>
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                 @error('name')
@@ -63,13 +63,15 @@
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" oninput="checkPassword(this)" required autocomplete="new-password">
               </div>
             </div>
-
+            
             <div class="form-consent">
+            <!--
               <label>
                 <input type="checkbox" name="" required="" id="">
 
                 <span><a href="#" target="_blank" class="link">利用規約</a>に同意する。</span>
               </label>
+            -->
             </div>
 
             <div class="form-submit">

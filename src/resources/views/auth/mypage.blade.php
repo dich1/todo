@@ -54,7 +54,7 @@
             </div>
           </div>
 
-          <input type="submit" name="" value="更 新">
+          <input type="submit" name="" value="変更する">
         </form>
       </div>
 
@@ -97,6 +97,7 @@
                     @endforeach
                   </ol>
                 </div>
+                <span class="arrow"></span>
               </a>
             </li>
             @endforeach
