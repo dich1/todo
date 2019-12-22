@@ -75,7 +75,8 @@ class CommitController extends Controller {
         $commit = Commit::findOrFail($id);
         $commitGroups = Commit::findOrFail($id)->commitGroups()->orderBy('priority')->get();
         $limit = new DateTime($commit->limit);
-        $remainingDays = $limit->diff(new DateTime(date('Y-m-d')))->days;
+        $today = new DateTime(date('Y-m-d'));
+        $remainingDays = ($limit > $today) ? $limit->diff($today)->days : 0;
         $counter = 0;
         foreach($commit->commitGroups as $key => $commitGroup) {
             if ($commitGroup->status) {
