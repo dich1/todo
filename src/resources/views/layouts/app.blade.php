@@ -12,7 +12,7 @@
       <meta name="robots" content="noindex" />
     @endif
     @if(Request::is('commits/*') && !Request::is('commits/create'))
-      <meta name="descpription" content="Commitを使って、【{{date('Y/m/d', strtotime($commit->limit))}}までにやりたい{{count($commit->commitGroups)}}個のこと】に挑戦中！">
+      <meta name="descpription" content="Commitを使って、【{{date('Y/m/d', strtotime($commit->limit))}}までにやりたい{{count($commit->commitGroups)}}個のこと】に挑戦！">
       <meta property="og:title" content="{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット" />
       <meta property="og:description" content="Commitを使って、【{{date('Y/m/d', strtotime($commit->limit))}}までにやりたい{{count($commit->commitGroups)}}個のこと】に挑戦中！" />
     @else
