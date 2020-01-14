@@ -15,6 +15,11 @@ $('.delete').click(function(){
     }).done(function(data){
         var targetElement = '#commit-item-bloc-' + id;
         $(targetElement).remove();
+        
+        $('.commit-item-bloc').each(function(index, element){
+            $(element).find('input[name*="priority"]')[0].value = index;
+            $(element).find('.num')[0].innerHTML = String(index + 1);
+        });
     }).fail(function(data, textStatus, errorThrown) {
         console.log('エラーステータス：' + data.status);
         console.log('ステータスメッセージ：' + textStatus);
