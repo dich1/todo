@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Commit</title>
-  <meta name="descpription" content="〇〇を使って、【2019年12月1日までにやりたい20個のこと】に挑戦中！">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css" media="all">
-</head>
-<body>
-  <header id="header" class="">
-    <div class="wrap">
-      <h1>
-        <a href="#">Commit</a>
-      </h1>
-      <div class="header-link">
-        <!-- <a href="#" class="header-link-logout">ログアウト</a> -->
-        <a href="#" class="header-link-login link">ログイン</a>
-        <a href="#" class="header-link-registration">新規登録</a>
-      </div>
-    </div>
-  </header>
+@extends('layouts.app')
+@section('title')
+  <title>Commit - コミットを共有&管理できるサービス</title>
+@endsection
+@section('css')
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
+@endsection
 
-
-
+@section('content')
   <div id="term" class="txtpage">
     <div class="wrap ptb40-80">
       <h2>利用規約</h2>
@@ -273,14 +256,4 @@
       <!-- <p>【●年●月●日改定】</p> -->
     </div>
   </div>
-
-
-
-  <footer id="footer" class="wrap">
-    <small>© Copyright 2019 xxx All rights reserved.</small>
-  </footer>
-
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+@endsection
