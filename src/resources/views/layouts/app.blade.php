@@ -82,10 +82,8 @@
     @yield('content')
     <footer id="footer">
       <ul>
-        <!--
-        <li><a href="#">利用規約</a></li>
-        <li><a href="#">プライバシーポリシー</a></li>
-        -->
+        <li><a href="/terms">利用規約</a></li>
+        <li><a href="/privacy">プライバシーポリシー</a></li>
         <li><a id="unsubscribe" href="#" data-id="{{ Auth::id() }}">退会</a></li>
         <li><a href="https://webkore.site/" target="_blank">運営者ブログ</a></li>
       </ul>

@@ -39,3 +39,11 @@ Route::resource('commitGroups', 'CommitGroupController', [
 Route::resource('commits', 'CommitController', [
   'only' => ['show']
 ]);
+
+Route::get('/terms', function(){
+    return view('terms');
+});
+
+Route::get('/privacy', function(){
+    return view('privacy');
+});
