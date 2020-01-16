@@ -1122,14 +1122,6 @@ img {
   position: relative;
   border: solid 2px #333;
 }
-#top .msg:before, #top .msg:after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: solid 2px #333;
-  border-radius: 50%;
-}
 #top .msg:before {
   top: -12px;
   left: -12px;
