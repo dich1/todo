@@ -30,7 +30,7 @@
     @endif
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:image" content="img/og.png" />
+    <meta property="og:image" content="https://www.commmmit.site/img/og.png" />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content="Commit" />
     <meta property="fb:app_id" content="496204527603841" />
