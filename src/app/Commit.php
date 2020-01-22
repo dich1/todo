@@ -10,6 +10,10 @@ class Commit extends Model
         'name', 'user_id', 'limit'
     ];
 
+    protected $appends = [
+        'commit_groups'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -18,5 +22,11 @@ class Commit extends Model
     public function commitGroups()
     {
         return $this->hasMany('App\CommitGroup');
+    }
+
+    public function getCommitGroupsAttribute()
+    {
+        return $this->commitGroups()
+            ->getResults();
     }
 }

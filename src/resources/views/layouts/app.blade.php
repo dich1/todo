@@ -65,6 +65,13 @@
       </script>
       <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
       <script>window.LogRocket && window.LogRocket.init('rbjwku/commit');</script>
+      <script>
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+      </script>
     @endif
 </head>
 <body>

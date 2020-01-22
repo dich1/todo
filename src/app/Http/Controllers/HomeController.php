@@ -28,17 +28,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(Auth::user()->id);
-        $currentCommits = $user->commits()
-                               ->whereDate('limit', '>=', date('Y-m-d'))
-                               ->orderBy('limit', 'asc')
-                               ->paginate(100);
-        $previousCommits = $user->commits()
-                                ->whereDate('limit', '<', date('Y-m-d'))
+        $user = User::with('commits')->findOrFail(Auth::user()->id);
+
+        $currentCommitsQuery = $user->commits()
+                                ->whereDate('limit', '>=', date('Y-m-d'));
+        $currentCommits = $currentCommitsQuery
+                                ->orderBy('limit', 'asc')
+                                ->limit(100)
+                                ->get();
+        $currentCommitsCount = $currentCommitsQuery->count();
+
+        $previousCommitsQuery = $user->commits()
+                                ->whereDate('limit', '<', date('Y-m-d'));
+        $previousCommits = $previousCommitsQuery
                                 ->orderBy('limit', 'desc')
-                                ->paginate(100);
-        
-        return view('auth.mypage', compact('currentCommits', 'previousCommits'));
+                                ->limit(100)
+                                ->get();
+        $previousCommitsCount = $previousCommitsQuery->count();
+
+        return view('auth.mypage', compact(
+                'currentCommits',
+                'previousCommits',
+                'currentCommitsCount',
+                'previousCommitsCount'
+            )
+        );
     }
 
     public function update(Request $request, $id)
@@ -51,7 +65,7 @@ class HomeController extends Controller
             $user->password = bcrypt($request->input("password"));
         }
         $user->save();
-        
+
         return redirect()->route('home')->with('message', 'ユーザー情報を更新しました。');
     }
 
@@ -59,7 +73,7 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        
+
         return response()->json([], 204);
     }
 
@@ -75,5 +89,53 @@ class HomeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['string', 'email', 'max:255'],
         ]);
+    }
+
+    /**
+     *  [API] 「もっと見る」押下時のコミットデータを取得する
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getMoreCommit(Request $request)
+    {
+        // current or previous
+        $type = $request->get('type');
+        // 現状表示されている数 (= スキップする数)
+        $skip = $request->get('skip');
+        // リクエストが不正な場合は400 error
+        if (is_null($type) || is_null($skip)) {
+            return response()->json(['status' => 'NG'], 400);
+        }
+
+        $user = User::with('commits')->findOrFail(Auth::user()->id);
+        // 日付の比較オペレータ
+        $operator = $type === 'current' ? '>=' : '<';
+        // 期日のソート
+        $sort = $type === 'current' ? 'asc' : 'desc';
+        $query = $user
+                    ->commits()
+                    ->whereDate('limit', $operator, date('Y-m-d'));
+        $total = $query->count();
+        // さらに読み込むコミットを2件まで取得
+        $commits = $query
+                    ->skip($skip)
+                    ->limit(2)
+                    ->orderBy('limit', $sort)
+                    ->get();
+
+        // データがない場合は404 error
+        if (count($commits) === 0) {
+            return response()->json(['status' => 'NG'], 404);
+        }
+
+        $response = [
+            'status' => 'OK',
+            'commits' => $commits,
+            'isMore' => $skip + $commits->count() < $total,
+            'currentCount' => $skip + $commits->count(),
+            'totalCount' => $total,
+        ];
+        return response()->json($response, 200);
     }
 }

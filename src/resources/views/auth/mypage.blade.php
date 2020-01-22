@@ -61,9 +61,9 @@
       <div class="commit-list-wrap">
         <div class="commit-list">
           <h2>現在のCommit</h2>
-          <ul>
+          <ul class="current-ul">
             @foreach($currentCommits as $commit)
-            <li id="commit-item-bloc-{{ $commit->id }}">
+            <li id="commit-item-bloc-{{ $commit->id }}" class="block">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
                   <h3>{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
@@ -79,13 +79,18 @@
               </a>
             </li>
             @endforeach
+            @if (100 < $currentCommitsCount)
+              <li class="button">
+                <button id="currentMoreButton" class="button" onclick="loadMore('current')">もっと見る</button>
+              </li>
+            @endif
           </ul>
         </div>
         <div class="commit-list">
           <h2>過去のCommit</h2>
-          <ul>
+          <ul class="previous-ul">
             @foreach($previousCommits as $commit)
-            <li id="commit-item-bloc-{{ $commit->id }}">
+            <li id="commit-item-bloc-{{ $commit->id }}" class="block">
               <a href="{{ route('commits.show', $commit->id) }}" >
                 <div class="">
                   <h3>{{date('Y/m/d', strtotime($commit->limit))}}までの{{count($commit->commitGroups)}}コミット</h3>
@@ -101,6 +106,11 @@
               </a>
             </li>
             @endforeach
+            @if (100 < $previousCommitsCount)
+              <li class="button">
+                <button id="previousMoreButton" class="button" onclick="loadMore('previous')">もっと見る</button>
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -114,4 +124,12 @@
     </span>
   </a>
 
+@endsection
+
+@section('scripts')
+  @if(app('env') == 'local')
+    <script src="{{ asset('js/home.js') }}" defer></script>
+  @else
+    <script src="{{ secure_asset('js/home.js') }}" defer></script>
+  @endif
 @endsection
